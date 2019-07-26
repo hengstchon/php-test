@@ -1,0 +1,99 @@
+
+/* ------------------------------------*/
+body, div, p, table {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	color:  #000;
+	font-size: 11px;
+	margin: 0px;
+}
+h1 { /* seitenname im header */
+	text-align: center;
+	font-size: 115%;
+	font-weight: bold;
+	margin: 3px 0px 3px 0px;
+	padding: 0px;
+	border-bottom: 1px solid #000;
+}
+h2 {
+	font-size: 110%;
+	font-weight: bold;
+	margin: 3px 0px 3px 0px;
+	padding: 0px 0px;
+}
+
+h3{
+	font-size: 105%;
+	font-weight: bold;
+	margin: 3px 0px 3px 0px;
+	padding: 3px;
+	border-bottom: 1px dashed #000;
+}
+fieldset {
+	margin: 0px 0px ;
+	padding: 3px;
+	border: 1px solid #000;
+}
+legend{
+    font-Size: 115%;
+	font-weight: bold;
+	margin: 0px;
+    padding: 3px ;
+	background-color: #fff;
+}
+
+.clear {
+	clear: both;
+}
+/* ======================================== */
+/* Design */
+/* ========================================*/
+#outline {  
+    width: 660px; 
+    margin: 0px auto 0; 
+	background-color: #fff;
+	padding: 0px 0px;	
+}
+#header {
+	margin: 0px 0px 0px 0px; 
+	padding: 0px 0px 0px 0px;
+}
+#printGrafik {
+	margin: 0px 0px 10px 0px; 
+	}
+#printGrafik img {
+	width: 660px;
+}
+#infoOben { /* datim arztname logoutButton */
+	margin: 0px 0px 10px 0px; 
+}
+#inhalt { /* rahmen um alle inhalte > texte */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+#nav {
+	display: none;
+}
+#nav2 {
+	display: none;
+}
+#dokuInfos { /* freigabe */
+	display:none;
+}
+
+hr {
+	display:none;
+}
+#ks {
+	display:none;
+}
+/* ======================================== */
+/* NIHSS */
+/* ======================================== */
+
+.col1, .col2 {
+	display:none;
+}
+#list1 li{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 10px 0px;
+}

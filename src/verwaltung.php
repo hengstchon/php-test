@@ -9,7 +9,7 @@
 //  ----------------------------------------------------------------------------
 // 	Change history:
 //	Bisheriger Stand 	- lezter Arbeitstag in der Entwicklung: 2011-04-26
-//  2011-10-10		 	- vergessene savePatientInfos function in case 1030 & 1035 integriert
+//  2011-10-10		 	- vergessene savePatientInfos function in case 1030 & 1035 integriert 
 //	2011-10				- NIHSS Punkte auf einer Seite
 //	2011-10-26			- function getDBContent in getDBContent umbenannt
 //   					- dateieigenschaften > php, western (ISO Latin1) & <?php
@@ -21,35 +21,35 @@
 
 session_set_cookie_params(3600);// einstellen auf 3600 = 60 Minuten
 session_start();
-include_once("webfcts.php");
+include_once("webfcts.php"); 
 include_once("html_head.php");
-if ($x == 10) {
+if ($x == 10) {   
 	if ($userLogin <> ''){
 		sendZugangsdatenEmail($userLogin);
 	} else {
-		userLogin('', '');
+		userLogin('', ''); 
 	}
 } else {
-	if ($x == 20) {
+	if ($x == 20) {   
 		if (($userEMail == 'neuerArztLogin') AND ($userLogin <> '')){
 			$arztLastName	= $userLogin;
 			$userLogin	= replaceSpecialCharacters($userLogin);
 			$userPW		= $userLogin . date('Y');
 			$userID = saveArztLoginWeb('', $userLogin, $userPW, '');
-			$arztID = saveArztWeb('', '', '', '',  $arztLastName,'', '', $userID,'');
+			$arztID = saveArztWeb('', '', '', '',  $arztLastName,'', '', $userID,''); 
 			sendEmailNewLogin($arztLastName, $userLogin, $userPW);
 		} else {
-			userLogin('', '');
+			userLogin('', ''); 
 		}
 	} else {
-		if (isset($_SESSION['userID']) == false) {
-			if ((isset($userLogin) == false) OR ($userLogin == '')) {
-				userLogin('', '');
-			} else {
+		if (isset($_SESSION['userID']) == false) {	  
+			if ((isset($userLogin) == false) OR ($userLogin == '')) {  
+				userLogin('', '');		
+			} else {	
 				if (((isset($userLogin) == true) AND ($userLogin <> '')) AND $x = 100){
 				$pw = getPW($userLogin);
 					if ($pw <>'0') {
-						if ($pw == $userPW) {
+						if ($pw == $userPW) { 
 							setSavedEmpty();
 							$_SESSION['userID'] 	= getUserID($userLogin);
 							$userID					= $_SESSION['userID'];
@@ -57,7 +57,7 @@ if ($x == 10) {
 							$_SESSION['arztID'] 	= $arztID;
 							$arztInfos				= getArztInfos($arztID);
 							if ($userLogin == 'notfall'){
-								$timestamp = $_SERVER['REQUEST_TIME'];
+								$timestamp = $_SERVER['REQUEST_TIME']; 
 								$datum = date("d.m.Y",$timestamp);
 								$uhrzeit = date("H:i:s",$timestamp);
 								$requestTime	=  $datum . " - " . $uhrzeit . " Uhr";
@@ -67,25 +67,25 @@ if ($x == 10) {
 						} else {
 							print "<p class='errorMessage'>";
 							print "Die von Ihnen eingegebene Benutzername und Passwort Kombination exitiert nicht (Login-Fehlermeldung: 1). ";
-							print "Bitte wenden Sie sich direkt an $administrator.</p>";
+							print "Bitte wenden Sie sich direkt an $administrator.</p>"; 
 							userLogin($userLogin, $userPW);
 						}
 					} else {
-						print "<p class='errorMessage'>";
+						print "<p class='errorMessage'>"; 
 						print "Die von Ihnen eingegebene Benutzername und Passwort Kombination exitiert nicht (Login-Fehlermeldung: 2). ";
 						print "Bitte wenden Sie sich direkt an $administrator.";
 						print "</p>";
 						userLogin($userLogin, $userPW);
 					}
 				}
-			}
+			} 
 		}
-	}
+	}	
 }
-if (isset($_SESSION['userID']) == true) {
+if (isset($_SESSION['userID']) == true) { 
 	$userID	= $_SESSION['userID'];
 	if ($_SESSION['userID'] <>'') {
-		if ($x == 200) {
+		if ($x == 200) { 
 			$_SESSION['userID'] = '';
 			$_SESSION['arztID'] = '';
 			session_unset();
@@ -101,19 +101,19 @@ if (isset($_SESSION['userID']) == true) {
 			$arztID					= $_SESSION['arztID'];
 			$arztInfos				= getArztInfos($arztID);
 			$arztName				= getDBContent('aerzte','arztLastName','arztID',$arztID);
-			if ((($x == 3316) OR ($x == 3216)) OR (($x == 3416) OR ($x == 3416))){
+			if ((($x == 3316) OR ($x == 3216)) OR (($x == 3416) OR ($x == 3416))){ 
 				print "<div id='infoOben'>";
 				print "日期: $datum, ";
-				print "已登录: $arztInfos";
+				print "已登录 : $arztInfos";
 				print "</div>";
-			} else {
+			} else { 
 				print "<div id='infoOben'>";
 				print "<form method='post' action='verwaltung.php'>";
 				print "<input type='hidden' name='x' value='200' />";
 				print "<input type='submit' value='退出'  class='logout' />";
 				print "</form>";
 				print "日期: $datum, ";
-				print "已登录: $arztInfos";
+				print "已登录 : $arztInfos";
 				print "</div>";
 				navigation();
 			}
@@ -125,145 +125,145 @@ if (isset($_SESSION['userID']) == true) {
 					editArztWeb();
 				} else {
 					print "<h1><img src='imagesLayout/blinkenRot.gif'> 未处理 - 诊断文件</h1>";
-					listAllPatientsRecords('o') ;
+					listAllPatientsRecords('o') ; 
 				}
 			}
 			print "<div class='clear'></div>";
-			if (($x >= 1000) and ($x < 9000)) {
+			if (($x >= 1000) and ($x < 9000)) {	 
 				switch ($x) {
-					case 1000:
+					case 1000: 
 						print "<h1>新患者</h1>";
 						print "<fieldset>";
 						print "<legend>创建新患者</legend>";
-						print "<form method='post' action='verwaltung.php'>";
+						print "<form method='post' action='verwaltung.php'>";	
 						print "<input type='hidden' name='x' value='1010' />";
 						print "<p>输入患者的姓氏: <input type='text' name='pLastName' /></p>";
 						print "<p><input type='submit' value='登记患者'  class='buttonHome' /></p>";
-						print "</form>";
-						print "</fieldset>";
+						print "</form>";			
+						print "</fieldset>";	
 						print "<hr size='1' noshade>";
 						include_once("DMT/search.php");
 						searchPatientMenu();
 						print "<div class='clear'></div>";
-					break;
-					case 1010:
+					break;				
+					case 1010: 
 						$pLastName	= mb_strtoupper($pLastName);
 						$exists = checkpLastNameExists($pLastName);
 						if($exists  == 1){
 							listPatients($pLastName);
-						} else {
+						} else {  
 							$addOption	= $_SESSION['addOption'];
-							if ($addOption == 0){
+							if ($addOption == 0){ 
 								$pDataArray	= array('', '', $pLastName, '', '', '', '', '', '', '', '', '', '');
 								$patientID	= savePatient($pDataArray);
 								print "<h1>患者资料 - 输入(编辑)</h1>";
 								print "<form method='Post' action='verwaltung.php'>";
-								print "<fieldset>";
+								print "<fieldset>";		
 								print "<input type='hidden' name='x' value='1030' />";
 								editPatientAndDiagnose($patientID);
 								print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
-								print "</fieldset>";
+								print "</fieldset>";				
 								print "</form>";
 							} else {
 								print "<h1><img src='imagesLayout/blinkenRot.gif'> 未处理 - 诊断文件</h1>";
-								listAllPatientsRecords('o') ;
+								listAllPatientsRecords('o') ; 
 							}
 						}
-					break;
-					case 1015:
+					break; 
+					case 1015: 
 						$addOption	= $_SESSION['addOption'];
-						if ($addOption == 0){
+						if ($addOption == 0){ 
 							$pDataArray	= array('', '', $pLastName, '', '', '', '', '', '', '', '', '', '');
 							$patientID	= savePatient($pDataArray);
 							print "<h1>患者资料 - 输入(编辑)</h1>";
 							print "<form method='Post' action='verwaltung.php'>";
-							print "<fieldset>";
+							print "<fieldset>";		
 							print "<input type='hidden' name='x' value='1030' />";
 							editPatientAndDiagnose($patientID);
 							print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
-							print "</fieldset>";
+							print "</fieldset>";			  
 							print "</form>";
 						} else {
 							print "<h1><img src='imagesLayout/blinkenRot.gif'> 未处理 - 诊断文件</h1>";
-							listAllPatientsRecords('o') ;
+							listAllPatientsRecords('o') ; 
 						}
-					break;
-					case 1020:
+					break; 
+					case 1020: 
 						if ($patientID == ''){
 							print "<h1>患者 - 调查</h1>";
 							print "<p class='errorMessage'>Es wurde kein Patient ausgew&auml;hlt.</p>";
-							listAllPatients($capitalLetter);
+							listAllPatients($capitalLetter); 
 						} else {
 							print "<h1>患者资料 - 输入(编辑)</h1>";
 							print "<form method='Post' action='verwaltung.php'>";
-							print "<fieldset>";
+							print "<fieldset>";	
 							print "<input type='hidden' name='x' value='1033' />";
-							editPatient($patientID);
-							print "<input type='submit' value=' >>>保存  >>> ' class='buttonHome' />";
-							print "</fieldset>";
+							editPatient($patientID);		
+							print "<input type='submit' value=' >>> 保存  >>> ' class='buttonHome' />";
+							print "</fieldset>";		
 							print "</form>";
 							navPatient($patientID);
-						}
-					break;
-					case 1025:
+						} 
+					break;	 
+					case 1025: 
 						print "<h1>$diagnoseButton 输入</h1>";
-						print "<fieldset>";
+						print "<fieldset>"; 
 						showPatient($patientID);
 						print "<form method='Post' action='verwaltung.php'>";
 						print "<input type='hidden' name='x' value='1035' />";
 						hiddenTherapyFields($patientRecordID);
-						editPatientRecordDiagnose($patientRecordID);
+						editPatientRecordDiagnose($patientRecordID);	
 						print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
-						print "</fieldset>";
+						print "</fieldset>";	  
 						print "</form>";
 						navPatient($patientID);
-					break;
-					case 1030:
+					break;	 
+					case 1030: 
 						print "<fieldset>";
 						savePatient($pDataArray);
 						savePatientInfos($patientRecordID, $pInfoIDs);
 						savePatientRecord($pRecordDataArray);
 						showPatient($patientID);
 						listPatientRecords($patientID);
-						print "</fieldset>";
-					break;
-					case 1033:
+						print "</fieldset>";	
+					break;				
+					case 1033: 
 						print "<fieldset>";
 						savePatient($pDataArray);
 						showPatient($patientID);
 						listPatientRecords($patientID);
-						print "</fieldset>";
-					break;
-					case 1035:
+						print "</fieldset>";	
+					break;	 
+					case 1035: 
 						print "<fieldset>";
-						savePatientInfos($patientRecordID, $pInfoIDs);
+						savePatientInfos($patientRecordID, $pInfoIDs); 
 						savePatientRecord($pRecordDataArray);
 						showPatient($patientID);
 						listPatientRecords($patientID);
-						print "</fieldset>";
-					break;
-					case 1100:
+						print "</fieldset>";	
+					break;	 
+					case 1100: 
 						include_once("DMT/search.php");
 						searchAll($search);
-						addPatientForm('');
+						addPatientForm(''); 
 					break;
-					case 2000:
+					case 2000: 
 						print "<h1><img src='imagesLayout/blinkenRot.gif'> 未处理 - 诊断文件</h1>";
-						listAllPatientsRecords('o') ;
-					break;
-					case 2100:
+						listAllPatientsRecords('o') ; 
+					break; 
+					case 2100: 
 						print "<h1>已处理 - 诊断文件</h1>";
-						listAllPatientsRecords('t') ;
-					break;
-					case 2200:
+						listAllPatientsRecords('t') ; 
+					break;		
+					case 2200: 
 						print "<h1>Konsilschein-&Uuml;bersicht</h1>";
-						listAllPatientsRecords('') ;
-					break;
-					case 3000:
+						listAllPatientsRecords('') ; 
+					break;				
+					case 3000: 
 						print "<h1>患者 - 调查</h1>";
-						listAllPatients($capitalLetter);
-					break;
-					case 3200:
+						listAllPatients($capitalLetter); 
+					break;				
+					case 3200: 
 						include_once("DMT/nihss.php");
 						print "<fieldset>";
 						showPatient($patientID);
@@ -271,7 +271,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "</fieldset>";
 						navPatient($patientID);
 					break;
-					case 3215:
+					case 3215: 
 						include_once("DMT/nihss.php");
 						print "<fieldset>";
 						showPatient($patientID);
@@ -284,24 +284,24 @@ if (isset($_SESSION['userID']) == true) {
 						print "<hr></div><br />";
 						navPatient($patientID);
 					break;
-					case 3216:
+					case 3216: 
 						include_once("DMT/nihss.php");
 						showPatient($patientID);
 						showPatientNIHSSWerte($pnID);
 					break;
-					case 3220:
+					case 3220: 
 						include_once("DMT/nihss.php");
 						print "<fieldset>";
 						showPatient($patientID);
 						$addOption	= $_SESSION['addOption'];
-						if ($addOption == 0){
+						if ($addOption == 0){ 
 							$pnID = savePatientNIHSS($patientID,$patientRecordID);
 							editPatientNIHSSWerte($pnID);
 						}
 						print "</fieldset>";
 						navPatient($patientID);
 					break;
-					case 3235:
+					case 3235: 
 						include_once("DMT/nihss.php");
 						print "<fieldset>";
 						showPatient($patientID);
@@ -313,7 +313,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "</div>";
 						navPatient($patientID);
 					break;
-					case 3300:
+					case 3300: 
 						editPatientRecordTherapy($patientRecordID);
 						print "<div id='ks'>";
 						print "<hr>";
@@ -322,7 +322,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "<hr></div><br />";
 						navPatient($patientID);
 					break;
-					case 3310:
+					case 3310: 
 						if ($nihssTotal <> ''){
 							savePatientNIHSSTotal($patientID, $patientRecordID, $nihssTotal) ;
 						}
@@ -332,7 +332,7 @@ if (isset($_SESSION['userID']) == true) {
 						listPatientRecords($patientID);
 						print "</fieldset>";
 					break;
-					case 3315:
+					case 3315: 
 						print "<fieldset>";
 						showPatient($patientID);
 						print "<div class='clear'></div>";
@@ -345,23 +345,23 @@ if (isset($_SESSION['userID']) == true) {
 						print "<hr></div><br />";
 						navPatient($patientID);
 					break;
-					case 3316:
+					case 3316: 
 						showPatient($patientID);
 						showPatientRecord($patientRecordID);
 					break;
-					case 3320:
+					case 3320: 
 						$addOption	= $_SESSION['addOption'];
-						if ($addOption == 0){
+						if ($addOption == 0){ 
 							$patientRecordID = savePatientRecord($pRecordDataArray);
 							print "<fieldset>";
 							showPatient($patientID);
 							print "<form method='Post' action='verwaltung.php'>";
 							print "<input type='hidden' name='x' value='1035' />";
 							hiddenTherapyFields($patientRecordID);
-							editPatientRecordDiagnose($patientRecordID);
+							editPatientRecordDiagnose($patientRecordID);	
 							print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
 							print "</form>";
-							print "</fieldset>";
+							print "</fieldset>";		
 						} else {
 							print "<fieldset>";
 							showPatient($patientID);
@@ -369,11 +369,11 @@ if (isset($_SESSION['userID']) == true) {
 							print "</fieldset>";
 						}
 					break;
-					case 3400:
+					case 3400: 
 						editPatientThrombolyseWeb($ptID);
 						navPatient($patientID);
 					break;
-					case 3410:
+					case 3410: 
 						print "<h1>Thrombolyse Dokumentation</h1>";
 						print "<fieldset>";
 						showPatient($patientID);
@@ -389,7 +389,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "<hr></div><br />";
 						navPatient($patientID);
 					break;
-					case 3415:
+					case 3415: 
 						print "<h1>Thrombolyse Dokumentation</h1>";
 						print "<fieldset>";
 						showPatient($patientID);
@@ -402,37 +402,37 @@ if (isset($_SESSION['userID']) == true) {
 						print "<hr></div><br />";
 						navPatient($patientID);
 					break;
-					case 3416:
+					case 3416: 
 						print "<h1>Thrombolyse Dokumentation</h1>";
 						showPatient($patientID);
 						showPatientThrombolyseWerteWeb($ptID);
 					break;
-					case 3420:
+					case 3420: 
 						$addOption	= $_SESSION['addOption'];
-						if ($addOption == 0){
+						if ($addOption == 0){ 
 							$ptID = savePatientThrombolyseWeb('',$ptWerteArray);
 							editPatientThrombolyseWeb($ptID);
 						}
 						navPatient($patientID);
 					break;
-					case 3999:
+					case 3999: 
 						print "<fieldset>";
 						showPatient($patientID);
 						print "<div class='clear'></div>";
 						listPatientRecords($patientID);
 						print "</fieldset>";
 					break;
-					case 4000:
+					case 4000: 
 						print "<h1>Eigenes Arzt-Profil</h1>";
 						editArztWeb();
 					break;
-					case 4110:
+					case 4110: 
 						print "<div class='clear'></div>";
 						saveArztLoginWeb($userID, $userLogin, $userPW, $userEMail);
 						saveArztWeb($arztID, $arztGender, $acadTitle, $arztFirstName, $arztLastName, $arztPhone, $arztComment, $userID, $clinicID);
 						showArztWeb();
 					break;
-					case 4200:
+					case 4200: 
 						print "<h1>Kontakt zum Administrator</h1>";
 						print "<fieldset>";
 						print "<form method='post' action='verwaltung.php'>";
@@ -446,7 +446,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "<div class='clear'></div>";
 					break;
 					case 4210:
-						$timestamp = $_SERVER['REQUEST_TIME'];
+						$timestamp = $_SERVER['REQUEST_TIME']; 
 						$datum = date("d.m.Y",$timestamp);
 						$uhrzeit = date("H:i:s",$timestamp);
 						$requestTime	=  $datum . " - " . $uhrzeit . " Uhr";
@@ -454,7 +454,7 @@ if (isset($_SESSION['userID']) == true) {
 						sendEmailAdmin($requestInfos);
 					break;
 				}
-			}
+			}						
 		}
 	}
 	require("html_end.php");

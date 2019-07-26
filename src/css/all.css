@@ -1,0 +1,282 @@
+
+
+*/
+
+body, div, p, table {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	color:  #000; /* 315aad */
+	line-height: 16px;
+	font-size: 12px;
+}
+input, select {
+    margin: 10px 1px 10px 0px; 
+}
+
+h4{ /*list faelle 
+	border-bottom: 1px solid #000;*/
+	font-weight: bold;
+	margin: 0px 0px 5px 0px;
+}
+
+/* ======================================== */
+/* Meldungen */
+/* ======================================== */
+#erfolgsMessage { 
+	font-size: 130%;
+	font-weight: bold;
+    margin: 10px 0px 10px 0px; 
+	padding:3px;
+	border: 1px solid #ccc;
+    background-color: #fee7e7; 
+}
+.erfolgsMessage { 
+	color: #ff6600; 
+	font-size: 120%;
+	line-Height: 150%;
+    margin: 10px 0px 10px 0px;   
+}
+
+.errorMessage { 
+	color: #FF0000; 
+	font-size: 150%;
+	line-Height: 150%;
+    margin: 0px 0px 0px 0px;   
+}
+.hint { /* in formularen */
+	color: #FF6600;
+    font-weight: bold;
+    font-size: 125%;
+}
+
+/* ======================================== */
+/* weiteres */
+/* ======================================== */
+.clear {
+	clear: both;
+}
+.mini  {
+    font-size: 75%;
+}
+
+/* ======================================== */
+/* formulare */
+/* ======================================== */
+
+.bg2 { 
+	background-color: #ccc;
+	border: 1px dotted #000000;
+}
+.bg3 { /*link new */
+	background-color: #fdd79c;
+	border: 1px dotted #000000;
+}
+.buttonHome { /* verschiedene submitButton */
+    width:100%;
+    font-weight: bold;
+    padding: 11px 5px;
+    margin: 15px 0px 25px 0px;
+    
+    border-top: 2px solid #fff;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #DDD;
+    
+    background-color: #4b97d4;
+    color: #FFF;
+}
+
+
+.button100 {
+    width:100%;
+	font-weight: bold;
+	margin:13px 0px 16px 0px;
+	padding:13px 0px 16px 0px;
+	background-color: #eee;
+}
+
+.button { /* home DMT */
+    width:200px;
+	font-weight: bold;
+	color: #333;
+	background-color: #add9ff;
+}
+
+.buttonEdit {
+	float:left;
+    width:140px;
+	margin:3px 10px 3px 0px;
+	font-size: 95%;
+	font-weight: bold;
+	background: #c9e5fb;
+}
+.buttonShow {
+	float:left;
+    width:140px;
+	margin:3px 10px 3px 0px;
+	font-size: 90%;
+	font-weight: bold;
+	background: #c0b9a6;
+}
+.buttonNew {
+	float:left;
+    width:140px;
+	margin:3px 10px 3px 0px;
+	font-size: 90%;
+	font-weight: bold;
+	background: #f7fbc9;
+}
+.buttonDelete {
+	float:left;
+    width:170px;
+	margin:3px 3px 3px 0px;
+	font-size: 90%;
+	font-weight: bold;
+	background: #ffe5c0;
+	color: #ff6600;
+}
+.buttonMini {	/* navigationPatient */
+	font-size: 90%;
+	padding: 1px 27px;
+	background-color: #d5e8f7;
+	margin:0px 5px 5px 0px;
+}
+.buttonMiniShow {	/* navigationPatient */
+	font-size: 90%;
+	padding: 1px;
+	background-color: #c0b9a6;
+	margin:0px 5px 10px 0px;
+}
+.bg1 { /* table head, button edit*/
+    background-color: #e5ebf6;
+	font-weight: bold;
+}
+.borderUnten {
+	border-bottom: 1px solid #ccc;
+	vertical-align:top;
+}
+#letterNavLayer {
+	height: 30px;
+	margin:3px 0px 0px 15px;
+	padding: 3px 0px;
+}
+#letterNavLayer p{
+	font-size: 90%;
+	line-height: 90%;
+}
+.capitalLetter input{ /*nav patienten Liste */
+	background-color: #d5e8f7;
+	padding: 0px;
+	font-weight: bold;
+	
+}
+.capitalLetter { /*nav patienten Liste */
+	width: 23px;
+	height: 23px;
+	padding: 1px;
+	margin: 0px;
+	float: left;
+	background-color: #ccc;
+	text-align: center;
+}
+/* patienten Records  */
+/* editstatus fallakte */
+#end { 
+	background-color:#f4f5f6;
+/*
+    padding: 3px 7px ;
+    */
+}
+#offen { 
+	background-color:#f8fbff;
+/*
+    padding: 3px 7px ;
+    */
+}
+#rahmenGruppeAll {
+}
+#rahmenGruppe {	
+	border: 0px;
+}
+.gruppe1 {
+	float:left;
+	padding: 7px 0px 3px 8px;
+	margin: 0px 3px 3px 0px;
+}
+.gruppe {
+	width: 30%;
+	float:left;
+	padding: 0px 0px 3px 8px;
+	margin: 0px 3px 3px 0px;
+}
+
+/* NIHSS */
+/* edit*/
+.col1 {
+	width: 400px;
+	float: left;
+	font-weight:bold;
+	font-size: 110%;
+	line-height: 120%;
+	padding: 10px 0px 5px 110px;
+}
+.col2 {
+	float: left;
+	font-weight:bold;
+	font-size: 110%;
+	line-height: 120%;
+	padding: 10px 0px 5px 0px;
+}
+/* listenzeile*/
+.col1a {
+	width: 490px;
+	float: left;
+	padding: 5px 0px 5px 0px;
+	border-bottom: 1px solid #ccc;
+	margin:0px 0px 5px 0px;
+}
+.col2a {
+	float: left;
+	padding: 5px 0px 5px 0px;
+	border-bottom: 1px solid #ccc;
+	margin:0px 0px 5px 0px;
+}
+.eName1{
+	margin:0px 10px 0px 0px;
+	font-size: 110%;
+}
+.eName2{
+	margin:0px 10px 0px 0px;
+	float: left;
+	font-size: 110%;
+	line-height: 120%;
+}
+.eText{
+	margin:0px 10px 0px 0px;
+	float: left;
+	font-style: italic;
+	font-weight:normal;
+	font-size: 110%;
+}
+.eInput{
+	float: left;
+}
+
+.eInput input{
+	margin:-6px 3px 0px 15px;
+}
+.ePkt{
+	float: left;
+	margin:0px 10px 0px 0px;
+}
+/* NIHSS */
+/* show*/
+#list1 li{
+margin: 20px 0px 20px 0px;border-top: 1px dotted #ccc;padding: 10px 0px 10px 0px;
+list-style-type: none;
+}
+/* thrombolyse werte felder */
+.tRight input{
+width:30px;
+text-align: right;
+margin: 0px 2px 0px 0px;
+}
