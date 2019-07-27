@@ -16,12 +16,12 @@
 
 
 
-if ($_SERVER['SERVER_NAME'] == "localhost") { //use localhost 
+if ($_SERVER['SERVER_NAME'] == "localhost") { //use localhost
 	$db_host			= 'db';
 	$db_name			= 'cn';
 	$db_user			= 'root';
 	$db_pw				= 'root';
-} else  { 
+} else  {
 	$db_host			= 'localhost';
 	$db_name			= 'fo';
 	$db_user			= 'root';

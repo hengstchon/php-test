@@ -9,7 +9,7 @@
 //  ----------------------------------------------------------------------------
 // 	Change history:
 //	Bisheriger Stand 	- lezter Arbeitstag in der Entwicklung: 2011-04-26
-//  2011-10-10		 	- vergessene savePatientInfos function in case 1030 & 1035 integriert 
+//  2011-10-10		 	- vergessene savePatientInfos function in case 1030 & 1035 integriert
 //	2011-10				- NIHSS Punkte auf einer Seite
 //	2011-10-26 			- function getDBContent in getDBContent umbenannt
 //  					- dateieigenschaften > php, western (ISO Latin1) & <?php
@@ -21,8 +21,8 @@
 //  ----------------------------------------------------------------------------
 
 
-include("constant.php"); 
-include("DMT/P000.php"); 
+include("constant.php");
+include("DMT/P000.php");
 $pNavSign		= "<span style='font-size:140%;'>&diams;</span>";
 
 function userLogin($userLogin, $userPW) {
@@ -30,16 +30,16 @@ function userLogin($userLogin, $userPW) {
 		print "<input type='hidden' name='x' value='100' />";
 		print "<h2>请登录</h2>";
 		print "<table cellspacing='3' cellpadding='0'>";
-		print "<tr>";		
+		print "<tr>";
 		print "<td>用户名 </td>";
 		print "<td><input type='text' name='userLogin' value='$userLogin' /></td>";
 		print "</tr>";
 		print "<tr>";
 		print "<td>密码</td>";
-		print "<td><input type='password' name='userPW' value='$userPW' /></td>";		
+		print "<td><input type='password' name='userPW' value='$userPW' /></td>";
 		print "</tr>";
 		print "</table>";
-		print "<p><input type='submit' value='注册'  class='submit' /></p>";
+		print "<p><input type='submit' value='登录'  class='submit' /></p>";
 		print "</form>";
 		print "<hr size='1' noshade>";
 }

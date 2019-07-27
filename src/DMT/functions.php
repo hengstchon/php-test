@@ -10,7 +10,7 @@
 //  ----------------------------------------------------------------------------
 
 
-function vardumpPre($var)  { 
+function vardumpPre($var) {
 // formatierte Ausgabe von Variablen for debug
 	echo "<pre>";
 	print_r($var);
@@ -18,16 +18,13 @@ function vardumpPre($var)  {
 	echo "<hr>";
 }
 
-function cl($data)
-{
-    if (is_array($data) || is_object($data))
-    {
-        echo("<script>console.log('".json_encode($data)."');</script>");
-    }
-    else
-    {
-        echo("<script>console.log('".$data."');</script>");
-    }
+function cl($data) {
+  if (is_array($data) || is_object($data)) {
+      echo("<script>console.log('".json_encode($data)."');</script>");
+  }
+  else {
+      echo("<script>console.log('".$data."');</script>");
+  }
 }
 
 ?>

@@ -21,17 +21,17 @@
 
 
 
-$adminEMailAdresse		= "hengstchon@gmail.com"; 
+$adminEMailAdresse		= "hengstchon@gmail.com";
 $administrator			= "Hr. Scibor";
 $timestamp 				= $_SERVER['REQUEST_TIME'];
 date_default_timezone_set("Europe/Berlin");
 $datum 					= date("d.m.Y",$timestamp);
 $uhrzeit 				= date("H:i",$timestamp);
 $zeit   				= date('H:i');
-$currentTime			= time(); 
+$currentTime			= time();
 $datumZeit				=  $datum . " - " . $uhrzeit . " Uhr";
-$pageNameDMT			= "Telekonsil - Patienten-Dokument-Verwaltungssystem (PDVS)";	
-$pageName		    	= "诊断文件 -远程诊断";
+$pageNameDMT			= "Telekonsil - Patienten-Dokument-Verwaltungssystem (PDVS)";
+$pageName		    	= "诊断文件 - 远程诊断";
 $versionsNr				= '04';
 $author					= 'R. Handschu';
 $datumFreigabeZEA		= '08.06.2010';

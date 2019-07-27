@@ -2,7 +2,7 @@
 //  ----------------------------------------------------------------------------
 //  Patienten-Daten-Verwaltungssystem == PDVS
 //  ----------------------------------------------------------------------------
-/
+//
 //  ----------------------------------------------------------------------------
 //  2011-10-27
 //  Patienten-Such-Funktionen - DMT und web
@@ -54,7 +54,7 @@ function searchPatientMenu(){
 	if ($case == 'web'){
 		$form	= "<form method='post' action='verwaltung.php'>";
 	}
-	print "<a name='suchen'></a>"; 
+	print "<a name='suchen'></a>";
 	print "<fieldset style='margin:20px 0px 20px 0px;width:420px;float:left;'>";
 	print "<legend>搜索</legend>";
 	print "<div style='float:left;border: 1px dotted #999;margin: 3px 5px 0 0;padding: 3px;width:300px;'>";
@@ -86,13 +86,13 @@ function searchPatientMenu(){
 	print "</select>";
 	print "<select name='pBdayYearS'>";
 	print "<option value=''>年</option>";
-	$currentYear = date('Y') ; 
-	$startjahr	= $currentYear - 110 ; 
-	for ($i=0; $i < 110; $i++){ 
+	$currentYear = date('Y') ;
+	$startjahr	= $currentYear - 110 ;
+	for ($i=0; $i < 110; $i++){
 		$year = $startjahr + $i;
 		print "<option value='$year'>$year</option>";
 	}
-	print "</select></td></tr>"; 
+	print "</select></td></tr>";
     print "<tr><td colspan='2'><hr></td></tr>";
     print "<tr><td colspan='2'><b>入院 </b><br /> ";
 	print "从: <input name='from' 	onfocus='showCalendarControl(this);' type='text' size='12' /> ";
@@ -101,12 +101,12 @@ function searchPatientMenu(){
 	print "<tr><td width='50%'><b>推荐人:</b></td><td>";
 				print "<select name='arzt'>";
 				print "<option value=''  selected>请选择</option>";
-				$db_request2	 = "SELECT arztID, arztLastName FROM aerzte  ORDER BY arztLastName"; 
+				$db_request2	 = "SELECT arztID, arztLastName FROM aerzte  ORDER BY arztLastName";
 				$query_handle2   = mysql_query($db_request2, $db_handle);
 				if ($query_handle2 != "") {
 					$rows2 = mysql_num_rows($query_handle2);
 					for ($i2 = 0; $i2 < $rows2; $i2++){
-						$data2 = mysql_fetch_row($query_handle2); 
+						$data2 = mysql_fetch_row($query_handle2);
 						$id			= $data2[0];
 						$arztLastName	= $data2[1];
 						$info		= getArztInfosShort($id);
@@ -115,15 +115,15 @@ function searchPatientMenu(){
 				} else {
 				}
 				print "</select>";
-	print "</td></tr>"; 
+	print "</td></tr>";
 	print "</table>";
 	print "<input type='submit' value='搜索'  style='width:100%;' class='buttonMini' />";
 	print "</form>";
 	print "</div>";
 	print "<div style='float:left;border: 1px dotted #999;margin: 3px;padding: 5px 3px;'>";
 	print "<b class='mini'>入院 </b><br /> ";
-	searchYesterdayButton(); 
-	searchTodayButton(); 
+	searchYesterdayButton();
+	searchTodayButton();
 	print "</div>";
 	print "</fieldset>";
 	print "<div class='clear'></div>";
@@ -166,8 +166,8 @@ function searchAll($search) {
 		$patientIDs 	= array();
 		$arztIDs		= array();
 		$patientIDOld	= '';
-		$pBdayDB		= $search[5] . '-' . $search[4] . '-' . $search[3];				
-		$pBdayT			= $search[3]. '. ' . monthName($search[4]) . ' ' . $search[5];	
+		$pBdayDB		= $search[5] . '-' . $search[4] . '-' . $search[3];
+		$pBdayT			= $search[3]. '. ' . monthName($search[4]) . ' ' . $search[5];
 		print "<h3>搜索</h3>";
 		if ((((((($search[0] <> '') OR ($search[1] <> '')) OR ($search[2] <> '')) OR ($search[3] <> '')) OR ($search[4] <> '')) OR ($search[5] <> '')) OR ($search[6] <> '')){
 			print "<b style='float:left;margin-right: 25px;'>Suchkriterien:</b> ";
@@ -201,13 +201,13 @@ function searchAll($search) {
 		print "<div class='clear'></div>";
 		if ($search[2] <> ''){
 			if ((($search[3] <> '') AND ($search[4] <> '')) And ($search[5] <> '')){
-				$db_request1	 = "SELECT * FROM patients WHERE pBday = '$pBdayDB' AND MATCH (pLastName) AGAINST ('$search[2]*' IN BOOLEAN MODE) OR pLastName LIKE '%$search[2]%' ORDER by pLastName, pBday";				
+				$db_request1	 = "SELECT * FROM patients WHERE pBday = '$pBdayDB' AND MATCH (pLastName) AGAINST ('$search[2]*' IN BOOLEAN MODE) OR pLastName LIKE '%$search[2]%' ORDER by pLastName, pBday";
 			} else {
-				$db_request1	 = "SELECT * FROM patients WHERE MATCH (pLastName) AGAINST ('$search[2]*' IN BOOLEAN MODE) OR pLastName LIKE '%$search[2]%' ORDER by pLastName, pBday";								
+				$db_request1	 = "SELECT * FROM patients WHERE MATCH (pLastName) AGAINST ('$search[2]*' IN BOOLEAN MODE) OR pLastName LIKE '%$search[2]%' ORDER by pLastName, pBday";
 			}
 		} else {
 			if ((($search[3] <> '') AND ($search[4] <> '')) And ($search[5] <> '')){
-				$db_request1	 = "SELECT * FROM patients WHERE pBday = '$pBdayDB'  ORDER by pLastName, pBday";				
+				$db_request1	 = "SELECT * FROM patients WHERE pBday = '$pBdayDB'  ORDER by pLastName, pBday";
 			} else {
 				$db_request1	 = "SELECT * FROM  patients ORDER by pLastName";
 			}
@@ -217,29 +217,29 @@ function searchAll($search) {
 			$rows1 = mysql_num_rows($query_handle1);
 			if ($rows1 > 0){
 				for ($i1 = 0; $i1 < $rows1; $i1++){
-					$data1		  	= mysql_fetch_object($query_handle1); 
-					$patientID	  	= $data1 -> patientID; 
+					$data1		  	= mysql_fetch_object($query_handle1);
+					$patientID	  	= $data1 -> patientID;
 					$patientIDs[$i1]= $patientID;
 				}
-			} 
+			}
 		}
-		if ($search[6] <> ''){ 
+		if ($search[6] <> ''){
 			$db_request1	 = "SELECT * FROM aerzte WHERE arztLastName ='$search[6]'";
 			$query_handle1   = mysql_query($db_request1, $db_handle);
 			if ($query_handle1 != ""){
 				$rows1 = mysql_num_rows($query_handle1);
 				if ($rows1 > 0){
 					for ($i1 = 0; $i1 < $rows1; $i1++){
-						$data1		  	= mysql_fetch_object($query_handle1); 
-						$arztIDs[$i1]	= $data1 -> arztID;   
+						$data1		  	= mysql_fetch_object($query_handle1);
+						$arztIDs[$i1]	= $data1 -> arztID;
 					}
-				} else { 
+				} else {
 					print "<p class='hint'>Kein Arzt mit diesem Namen auffindbar</p>";
 				}
 			} else {
 				print "<p class='errorMessage'>Datenbankabfrage nicht erfolgreich! [searchAll - query_handle 1 - arzt > arztIDs]</p>";
-			} 
-		} 
+			}
+		}
 		if ($search[0] <> ''){
 			$from		= explode('.', $search[0]);
 			$fromD		= $from[0];
@@ -271,22 +271,22 @@ function searchAll($search) {
 			print "<ol style='line-height:190%;'>";
 			foreach ($patientIDs as $key => $patientID){
 				$print = false;
-				$db_request1	= "SELECT * FROM patientRecords WHERE patientID = '$patientID' ";	
+				$db_request1	= "SELECT * FROM patientRecords WHERE patientID = '$patientID' ";
 				$query_handle1   = mysql_query($db_request1, $db_handle);
 				if ($query_handle1 != ""){
 					$rows1 = mysql_num_rows($query_handle1);
 					if ($rows1 > 0){
-						for ($i1 = 0; $i1 < $rows1; $i1++){			
-							$data1		  	= mysql_fetch_object($query_handle1);  
+						for ($i1 = 0; $i1 < $rows1; $i1++){
+							$data1		  	= mysql_fetch_object($query_handle1);
 							$patientRecordID= $data1 -> patientRecordID;
 							$timeHospital	= $data1 -> timeHospital;
 							$diagnosisArztID= $data1 -> diagnosisArztID;
 							$timeHospital	= explode(' ', $timeHospital);
 							$timeHospital	= $timeHospital[0];
-							if (($from <> '')  AND (count($arztIDs) == 0)){ 
+							if (($from <> '')  AND (count($arztIDs) == 0)){
 								if (($timeHospital >= $from) AND ($timeHospital <= $to)){
 									$print = true;
-								} 
+								}
 							} else {
 								$print = true;
 							}
@@ -298,7 +298,7 @@ function searchAll($search) {
 										$print = false;
 									}
 								}
-							} 
+							}
 							if ((count($arztIDs) > 0) AND ($from <> '')) {
 								foreach ($arztIDs as $key => $arztID){
 									if ($diagnosisArztID == $arztID) {
@@ -311,9 +311,9 @@ function searchAll($search) {
 										$print = false;
 									}
 								}
-							} 
+							}
 							$print2 = false;
-							if ($patientID <> $patientIDOld) { 
+							if ($patientID <> $patientIDOld) {
 								if ($print){
 									$patientIDOld	= $patientID;
 									$db_request3	 = "SELECT * FROM  patients  WHERE patientID = '$patientID'";
@@ -321,8 +321,8 @@ function searchAll($search) {
 									if ($query_handle3 != ""){
 										$rows3 = mysql_num_rows($query_handle3);
 										if ($rows3 > 0){
-											$data3		  	= mysql_fetch_object($query_handle3); 
-											$patientID	  	= $data3 -> patientID;   
+											$data3		  	= mysql_fetch_object($query_handle3);
+											$patientID	  	= $data3 -> patientID;
 											$pFirstName	 	= $data3 -> pFirstName;
 											$pLastName	  	= $data3 -> pLastName;
 											$pBday	 		= $data3 -> pBday;
@@ -361,7 +361,7 @@ function searchAll($search) {
 												if ($pBdayMonth	== $search[4]){
 													if ($print2){
 														$info	.= ' & Monat';
-													} else {	
+													} else {
 														$info	.= '月';
 													}
 													$print2 = true;
@@ -370,7 +370,7 @@ function searchAll($search) {
 												if ($pBdayYear	== $search[5]){
 													if ($print2){
 														$info	.= ' & Jahr';
-													} else {	
+													} else {
 														$info	.= '年';
 													}
 													$print2 = true;
@@ -389,12 +389,12 @@ function searchAll($search) {
 												if ($query_handle3 != ""){
 													$rows3 = mysql_num_rows($query_handle3);
 													for ($i3 = 0; $i3 < $rows3; $i3++){
-														$data3		  = mysql_fetch_object($query_handle3); 
-														$patientRecordID= $data3 -> patientRecordID;	
-														$timeHospital	= $data3 -> timeHospital;   
-														$editStatus		= $data3 -> editStatus;  
+														$data3		  = mysql_fetch_object($query_handle3);
+														$patientRecordID= $data3 -> patientRecordID;
+														$timeHospital	= $data3 -> timeHospital;
+														$editStatus		= $data3 -> editStatus;
 														$timeHospital	= strtotime($timeHospital);
-														$timeHospital	= date("d.m.Y",$timeHospital) ;					
+														$timeHospital	= date("d.m.Y",$timeHospital) ;
 														if ($editStatus == 'o'){
 															$editStatus = "offen";
 														} else {
@@ -402,26 +402,26 @@ function searchAll($search) {
 														}
 														print "<span class='mini'>";
 														if( ($i3 <> 0) AND ($i3 < $rows3)){
-															print " || "; 
+															print " || ";
 														} else {
 														}
 														print " $timeHospital";
 														print " ($editStatus)";
 														print "</span>";
 													}
-												}	
+												}
 												print "</li>";
 											}
-										} 
+										}
 									} else {
 										print "<p class='errorMessage'>Datenbankabfrage nicht erfolgreich! [searchAll - query_handle 3 - patient data]</p>";
-									} 
-								} 
+									}
+								}
 							}
-						} 
+						}
 					}
-				}  
-			} 	
+				}
+			}
 			if ((($search[3] <> '') OR ($search[4] <> '')) OR ($search[5] <> '')){
 				print "<hr>";
 				print "<b>Patienten ohne Angabe des Geburtsdatums:</b>";
@@ -439,7 +439,7 @@ function searchAll($search) {
 			Beispiel 'Schmidt' -> Eingabe Suchfeld: 'Schmi' damit alle Schreibvarianten (dt, tt und t) gefunden werden.</p>";
 		}
 		print "</fieldset>";
-	} 
+	}
 }
 
 function searchPatientpBDayEmpty() {
@@ -451,8 +451,8 @@ function searchPatientpBDayEmpty() {
 			$rows1 = mysql_num_rows($query_handle1);
 			if ($rows1 > 0){
 				for ($i1 = 0; $i1 < $rows1; $i1++){
-					$data1		  	= mysql_fetch_object($query_handle1); 
-					$patientID	  	= $data1 -> patientID;   
+					$data1		  	= mysql_fetch_object($query_handle1);
+					$patientID	  	= $data1 -> patientID;
 					$pFirstName	 	= $data1 -> pFirstName;
 					$pLastName	  	= $data1 -> pLastName;
 					$pStreet		= $data1 -> pStreet;
@@ -479,23 +479,23 @@ function searchPatientpBDayEmpty() {
 					if ($query_handle3 != ""){
 						$rows3 = mysql_num_rows($query_handle3);
 						for ($i3 = 0; $i3 < $rows3; $i3++){
-							$data3		  = mysql_fetch_object($query_handle3); 
-							$patientRecordID= $data3 -> patientRecordID;	
-							$timeHospital	= $data3 -> timeHospital;   
-							$editStatus		= $data3 -> editStatus;  
+							$data3		  = mysql_fetch_object($query_handle3);
+							$patientRecordID= $data3 -> patientRecordID;
+							$timeHospital	= $data3 -> timeHospital;
+							$editStatus		= $data3 -> editStatus;
 							$diagnosisArztID= $data3 -> diagnosisArztID;
-							$therapyArztID  = $data3 -> therapyArztID;									
+							$therapyArztID  = $data3 -> therapyArztID;
 							$diagnosisArzt	= getArztInfosShort($diagnosisArztID);
 							$therapyArzt	= getArztInfosShort($therapyArztID);
 							$timeHospital	= strtotime($timeHospital);
-							$timeHospital	= date("d.m.Y",$timeHospital) ;					
+							$timeHospital	= date("d.m.Y",$timeHospital) ;
 							if ($editStatus == 'o'){
 								$editStatus = "offen";
 							} else {
 								$editStatus = "abgeschlossen";
 							}
 							if( ($i3 <> 0) AND ($i3 < $rows3)){
-								print " || "; 
+								print " || ";
 							} else {
 							}
 							print "<span class='mini'>";
@@ -503,13 +503,13 @@ function searchPatientpBDayEmpty() {
 							print " ($editStatus)";
 							print "</span>";
 						}
-					}	
-					print "</li>";		
-				} 
-			} 
+					}
+					print "</li>";
+				}
+			}
 		} else {
 			print "<p class='errorMessage'>Datenbankabfrage nicht erfolgreich! [ searchPatientpBDayEmpty()]</p>";
-		} 
-	} 
+		}
+	}
 }
 ?>

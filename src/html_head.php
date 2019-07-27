@@ -11,16 +11,6 @@
 //  2011-11-23			- neuer Server: WAMP > header, meta charset:  ISO-8859-1
 //  ----------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
 header('Content-Type: text/html; charset=UTF-8');
 print "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>";
 print "<html xmlns='http://www.w3.org/1999/xhtml'>";
@@ -29,7 +19,7 @@ print "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />";
 print "<title>Telekonsil</title>";
 print "<meta name='robots' content='noindex, nofollow, noarchive'>";
 print "	<script type='text/javascript' src='ckeditor/ckeditor.js'></script>";
-if ((($x == 3316) OR ($x == 3216)) OR (($x == 3416) OR ($x == 3416)) ){ 
+if ((($x == 3316) OR ($x == 3216)) OR (($x == 3416) OR ($x == 3416)) ){
 	print "<link rel='stylesheet' href='css/print.css' type='text/css'>";
 	print "<script type='text/javascript' language='JavaScript'>
 	<!-- Begin
@@ -49,7 +39,7 @@ if ((($x == 3316) OR ($x == 3216)) OR (($x == 3416) OR ($x == 3416)) ){
 		$tT_all = Therapytemplate::getAllEntries('y');
 		$count =0;
 		if (is_array($tT_all)){
-			foreach($tT_all as $id=>$sub) 
+			foreach($tT_all as $id=>$sub)
 			{
 				if (!is_array($sub)) { $count++; }
 				else { $count = ($count + rcount($sub)); }
@@ -75,7 +65,7 @@ if ((($x == 3316) OR ($x == 3216)) OR (($x == 3416) OR ($x == 3416)) ){
     	}
    }
    print "</head>";
-	print "<body>"; 
+	print "<body>";
 }
 print "<div id='outline'> ";
 print "<div id='printGrafik'>";

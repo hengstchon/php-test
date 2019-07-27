@@ -693,17 +693,15 @@ function listAllPatientsRecords($editStatus1) {
 					$pRID 	= $data1[0];
 					$pID 	= $data1[1];
 					if ($pID <> $patientID1){
-						$patientIDs[$i1] 	= $pID;
-						$patientID1			= $pID;
+						$patientIDs[$i1] = $pID;
+						$patientID1	= $pID;
 					}
 				}
-				print "<p>按寄售日期排序 ";
-				print " ";
-				print "  </p>";
-				foreach ($patientIDs as $key => $patientID){
-					$vname		= schreibweise(getDBContent('patients','pFirstName', 'patientID',$patientID));
-					$nname		= schreibweise(getDBContent('patients','pLastName', 'patientID',$patientID));
-					$bDay		= getDBContent('patients','pBday', 'patientID',$patientID);
+				print "<p>按寄售日期排序</p>";
+				foreach ($patientIDs as $key => $patientID) {
+					$vname = schreibweise(getDBContent('patients', 'pFirstName', 'patientID', $patientID));
+					$nname = schreibweise(getDBContent('patients','pLastName', 'patientID', $patientID));
+					$bDay	= getDBContent('patients', 'pBday', 'patientID', $patientID);
 					if ($bDay <> "0000-00-00"){
 						$bDay		= strtotime($bDay);
 						$bDay		= date("d.m.Y",$bDay);

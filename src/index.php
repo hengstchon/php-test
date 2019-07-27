@@ -51,9 +51,9 @@ if ($x == 10) {
 					if ($pw <>'0') {
 						if ($pw == $userPW) {
 							setSavedEmpty();
-							$_SESSION['userID'] 	= getUserID($userLogin);
-							$userID					= $_SESSION['userID'];
-							$arztID 				= getDBContent('aerzte', 'arztID','userID',$userID);
+							$_SESSION['userID']	= getUserID($userLogin);
+							$userID	= $_SESSION['userID'];
+							$arztID	= getDBContent('aerzte', 'arztID', 'userID', $userID);
 							$_SESSION['arztID'] 	= $arztID;
 							$arztInfos				= getArztInfos($arztID);
 							if ($userLogin == 'notfall'){
