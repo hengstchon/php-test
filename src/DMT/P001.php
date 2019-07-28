@@ -209,7 +209,7 @@ function checkpLastNameExists($pLastName) {
 	global $db_handle;
 	$exists = 0;
 	if (access()) {
-		$pLastName		= mb_strtoupper($pLastName);
+		$pLastName		= $pLastName;
 		$db_request1	= "SELECT patientID FROM patients WHERE pLastName = '$pLastName'";
 		$query_handle1  = mysql_query($db_request1, $db_handle);
 		if ($query_handle1 != ""){
@@ -222,6 +222,42 @@ function checkpLastNameExists($pLastName) {
 	return $exists;
 }
 
+function getInitials($str) {
+  if (empty($str)) {return '';}
+  $fchar = ord($str{0});
+  if ($fchar >= ord('A') && $fchar <= ord('z')) {
+      return strtoupper($str{0});
+  }
+
+  $s1  = iconv('UTF-8', 'gb2312', $str);
+  $s2  = iconv('gb2312', 'UTF-8', $s1);
+  $s   = $s2 == $str ? $s1 : $str;
+  $asc = ord($s{0}) * 256 + ord($s{1}) - 65536;
+  if ($asc >= -20319 && $asc <= -20284) { return 'A'; }
+  if ($asc >= -20283 && $asc <= -19776) { return 'B'; }
+  if ($asc >= -19775 && $asc <= -19219) { return 'C'; }
+  if ($asc >= -19218 && $asc <= -18711) { return 'D'; }
+  if ($asc >= -18710 && $asc <= -18527) { return 'E'; }
+  if ($asc >= -18526 && $asc <= -18240) { return 'F'; }
+  if ($asc >= -18239 && $asc <= -17923) { return 'G'; }
+  if ($asc >= -17922 && $asc <= -17418) { return 'H'; }
+  if ($asc >= -17417 && $asc <= -16475) { return 'J'; }
+  if ($asc >= -16474 && $asc <= -16213) { return 'K'; }
+  if ($asc >= -16212 && $asc <= -15641) { return 'L'; }
+  if ($asc >= -15640 && $asc <= -15166) { return 'M'; }
+  if ($asc >= -15165 && $asc <= -14923) { return 'N'; }
+  if ($asc >= -14922 && $asc <= -14915) { return 'O'; }
+  if ($asc >= -14914 && $asc <= -14631) { return 'P'; }
+  if ($asc >= -14630 && $asc <= -14150) { return 'Q'; }
+  if ($asc >= -14149 && $asc <= -14091) { return 'R'; }
+  if ($asc >= -14090 && $asc <= -13319) { return 'S'; }
+  if ($asc >= -13318 && $asc <= -12839) { return 'T'; }
+  if ($asc >= -12838 && $asc <= -12557) { return 'W'; }
+  if ($asc >= -12556 && $asc <= -11848) { return 'X'; }
+  if ($asc >= -11847 && $asc <= -11056) { return 'Y'; }
+  return 'Z';
+}
+
 function listAllPatients($capitalLetter) {
 	global $db_handle;
 	global $case;
@@ -231,15 +267,15 @@ function listAllPatients($capitalLetter) {
     	if ($capitalLetter == ''){
     		$navStatus = 0;
 			$capitalLetter='A';
-			$db_request	 = "SELECT pLastName FROM patients ORDER by pLastName ASC";
+			$db_request	 = "SELECT pLastName FROM patients ORDER by CONVERT(pLastName USING gbk) ASC";
 			$query_handle   = mysql_query($db_request, $db_handle);
 			if ($query_handle != ""){
 				$rows = mysql_num_rows($query_handle);
 				$data		  = mysql_fetch_row($query_handle);
-				$capitalLetter = substr($data[0],0,1);
+				$capitalLetter = substr(getInitials($data[0]),0,1);
 			}
 		}
-		$db_request1	 = "SELECT patientID, pFirstName, pLastName, pBday, pStreet, pZipCode, pCity, pPhone, pGender FROM patients  WHERE pLastname LIKE '$capitalLetter%'  ORDER by pLastName ASC";
+		$db_request1	 = "SELECT patientID, pFirstName, pLastName, pBday, pStreet, pZipCode, pCity, pPhone, pGender FROM patients ORDER by CONVERT(pLastName USING gbk) ASC";
 		$query_handle1   = mysql_query($db_request1, $db_handle);
 		if ($query_handle1 != ""){
 			$rows1 = mysql_num_rows($query_handle1);
@@ -483,7 +519,7 @@ function editPatient($patientID) {
 			print "<tr><td>姓:</td><td> <input name='pLastName' value='$pLastName' /></td></tr>";
 			print "<tr><td>出生日期 日期 (TT.MM.JJJJ):</td><td>";
 			if ($pBday == "0000-00-00"){
-				print "<p style='float:left;margin:11px 5px;'>B请选择: </p>";
+				print "<p style='float:left;margin:11px 5px;'>请选择: </p>";
 			}
 			print "<select name='pBdayDay' style='float:left;margin-right: 5px;'>";
 			if ($pBdayDay == "00"){
@@ -549,7 +585,7 @@ function savePatient($pDataArray) {
 				$rows = mysql_num_rows($query_handle1);
 				if ($rows > 0) {
 					$data1 = mysql_fetch_row($query_handle1);
-					$vname		= mb_strtoupper($pDataArray[1]);
+					$vname		= $pDataArray[1];
 					$count1		= strlen($vname);
 					$vname		= str_replace(' ','', substr($vname, 0,1)) . substr($vname, 1, $count1);
 					$db_request = "UPDATE patients SET pFirstName = '$vname' WHERE patientID = '$pDataArray[0]' LIMIT 1";
@@ -558,7 +594,7 @@ function savePatient($pDataArray) {
 					} else {
 						print "<p class='errorMessage'>Konnte Vorname nicht &auml;ndern!</p>";
 					}
-					$nname		= mb_strtoupper($pDataArray[2]);
+					$nname		= $pDataArray[2];
 					$count2		= strlen($nname);
 					$nname		= str_replace(' ','', substr($nname, 0,1)) . substr($nname, 1, $count2);
 					$db_request = "UPDATE patients SET pLastName = '$nname' WHERE patientID = '$pDataArray[0]' LIMIT 1";
@@ -606,7 +642,7 @@ function savePatient($pDataArray) {
 				 }
 			}
 		} else {
-			$nname		= mb_strtoupper($pDataArray[2]);
+			$nname		= $pDataArray[2];
 			$where = 'patientID, pLastName';
 			$value = "'NULL','$nname'";
 			$db_request = "INSERT INTO patients (" . $where . ") VALUES (" . $value . ")";

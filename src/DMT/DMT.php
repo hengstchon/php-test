@@ -67,7 +67,7 @@ if (($x >= 1000) and ($x < 9000)) {
 			print "<hr size=1 noshade>";
 		break; 
 		case 1010: 
-			$pLastName	= mb_strtoupper($pLastName);
+			$pLastName	= $pLastName;
 			$exists = pLastNameExist($pLastName);
 			if($exists  == 1){
 				listPatientsWeb($pLastName);
@@ -1454,7 +1454,7 @@ function editPatientThrombolyse($ptID) {
 						$infoA		= getArztInfos($tArztID);
 						print "<option value='$tArztID'>$infoA</option>"; 
 					}
-					print "<option value=''>B请选择</option>";
+					print "<option value=''>请选择</option>";
 					$db_request3	 = "SELECT arztID, clinicID FROM aerzte ORDER BY arztLastName"; 
 					$query_handle3   = mysql_query($db_request3, $db_handle);
 					if ($query_handle3 != "") {

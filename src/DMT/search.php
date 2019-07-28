@@ -346,10 +346,10 @@ function searchAll($search) {
 											$what2 = explode(' ',$search[2]);
 											if (is_array($search[2])){
 												foreach($what2 as $i => $what3){
-													$pLastName      = str_ireplace($what3, "<b>" . substr(mb_strtoupper($what3),0,1) . substr($what3, 1) . "</b>", $pLastName);
+													$pLastName      = str_ireplace($what3, "<b>" . substr($what3,0,1) . substr($what3, 1) . "</b>", $pLastName);
 												}
 											} else {
-												$pLastName      = str_ireplace($search[2], "<b>" . substr(mb_strtoupper($search[2]),0,1) . substr($search[2], 1) . "</b>", $pLastName);
+												$pLastName      = str_ireplace($search[2], "<b>" . substr($search[2],0,1) . substr($search[2], 1) . "</b>", $pLastName);
 										   }
 											$info = '';
 											if ((($search[3] <> '') OR ($search[4] <> '')) OR ($search[5] <> '')){

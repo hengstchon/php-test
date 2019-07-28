@@ -147,14 +147,16 @@ if (isset($_SESSION['userID']) == true) {
 						print "<div class='clear'></div>";
 					break;
 					case 1010:
-						$pLastName	= mb_strtoupper($pLastName);
+						$pLastName	= $pLastName;
 						$exists = checkpLastNameExists($pLastName);
 						if($exists  == 1){
 							listPatients($pLastName);
 						} else {
 							$addOption	= $_SESSION['addOption'];
-							if ($addOption == 0){
+							if ($addOption == 0) {
 								$pDataArray	= array('', '', $pLastName, '', '', '', '', '', '', '', '', '', '');
+                cl($pLastName);
+                cl($pDataArray);
 								$patientID	= savePatient($pDataArray);
 								print "<h1>患者资料 - 输入(编辑)</h1>";
 								print "<form method='Post' action='verwaltung.php'>";

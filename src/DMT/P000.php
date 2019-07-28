@@ -341,14 +341,14 @@ function nameExist($capitalLetter) {
 
 function schreibweise($variable){
 	$count = strlen($variable);
-	$variable	= substr($variable, 0, 1) . mb_strtolower(substr($variable, 1, $count));
+	$variable	= substr($variable, 0, 1) . substr($variable, 1, $count);
 	$pos		= strpos(substr($variable, 1, $count), ' ');
 	if ($pos > 0){
 		$nameArray	= explode(' ', $variable);
 		$countTeile	= count($nameArray);
 		for ($i=0; $i<$countTeile;$i++){
 			$countLen		= strlen($nameArray[$i]);
-			$variable1[$i]	=  mb_strtoupper(substr($nameArray[$i], 0,1)) . substr($nameArray[$i], 1, $countLen);
+			$variable1[$i]	=  substr($nameArray[$i], 0,1) . substr($nameArray[$i], 1, $countLen);
 		}
 		$variable	= '';
 		for ($j=0; $j<$countTeile;$j++){
@@ -361,7 +361,7 @@ function schreibweise($variable){
 		$countTeile	= count($nameArray);
 		for ($i=0; $i<$countTeile;$i++){
 			$countLen		= strlen($nameArray[$i]);
-			$variable1[$i]	=  mb_strtoupper(substr($nameArray[$i], 0,1)) . substr($nameArray[$i], 1, $countLen);
+			$variable1[$i]	=  substr($nameArray[$i], 0,1) . substr($nameArray[$i], 1, $countLen);
 		}
 		$variable	= '';
 		for ($j=0; $j<$countTeile;$j++){
@@ -466,7 +466,7 @@ function createMonthFields($selectName, $selectedMonth) {
 }
 function monthName($month) {
 	$monthName = '';
-	$monthNameArray = Array(1=>'Januar', 'Februar', 'M&auml;rz', 'April', 'Mai', '六月', '七月', 'August', 'September', 'Oktober', 'November', 'Dezember');
+	$monthNameArray = Array(1=>'一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月');
 	if (($month >= 1) and ($month < 13)) {
 		return $monthNameArray[$month*1];
 	}

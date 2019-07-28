@@ -147,7 +147,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "<div class='clear'></div>";
 					break;
 					case 1010:
-						$pLastName	= mb_strtoupper($pLastName);
+						$pLastName	= $pLastName;
 						$exists = checkpLastNameExists($pLastName);
 						if($exists  == 1){
 							listPatients($pLastName);
