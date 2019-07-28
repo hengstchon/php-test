@@ -185,6 +185,7 @@ function patientsNavigation() {
 	print "<div id='letterNavLayer'>";
 	for ($i=65; $i <=90 ; $i++){
 		$capitalLetter = chr($i);
+    cl(nameExist($capitalLetter));
 		if (nameExist($capitalLetter) > 0) {
 			if ($case == 'web'){
 				print "<form method='post' action='verwaltung.php' class='capitalLetter' >";
@@ -275,7 +276,7 @@ function listAllPatients($capitalLetter) {
 				$capitalLetter = substr(getInitials($data[0]),0,1);
 			}
 		}
-		$db_request1	 = "SELECT patientID, pFirstName, pLastName, pBday, pStreet, pZipCode, pCity, pPhone, pGender FROM patients ORDER by CONVERT(pLastName USING gbk) ASC";
+		$db_request1	 = "SELECT patientID, pFirstName, pLastName, pBday, pStreet, pZipCode, pCity, pPhone, pGender FROM patients WHERE pLastNamePy LIKE '$capitalLetter%' ORDER by CONVERT(pLastName USING gbk) ASC";
 		$query_handle1   = mysql_query($db_request1, $db_handle);
 		if ($query_handle1 != ""){
 			$rows1 = mysql_num_rows($query_handle1);
@@ -643,8 +644,11 @@ function savePatient($pDataArray) {
 			}
 		} else {
 			$nname		= $pDataArray[2];
-			$where = 'patientID, pLastName';
-			$value = "'NULL','$nname'";
+      cl($nname);
+      $nnamepy = getInitials($nname);
+      cl($nnamepy);
+			$where = 'patientID, pLastName, pLastNamePy';
+			$value = "'NULL','$nname', '$nnamepy'";
 			$db_request = "INSERT INTO patients (" . $where . ") VALUES (" . $value . ")";
 			$query_handle = mysql_query($db_request, $db_handle);
 			if ($query_handle != ""){

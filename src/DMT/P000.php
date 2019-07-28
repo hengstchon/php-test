@@ -330,7 +330,7 @@ function nameExist($capitalLetter) {
 	global $db_handle;
 	$rows = 0;
 	if (access()) {
-		$db_request	 = "SELECT pLastName FROM patients WHERE pLastname LIKE '$capitalLetter%'  ORDER by pLastName ASC";
+		$db_request	 = "SELECT pLastName FROM patients WHERE pLastnamePy LIKE '$capitalLetter%'  ORDER by pLastName ASC";
 		$query_handle   = mysql_query($db_request, $db_handle);
 		if ($query_handle != ""){
 			$rows = mysql_num_rows($query_handle);
