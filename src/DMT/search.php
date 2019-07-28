@@ -94,7 +94,7 @@ function searchPatientMenu(){
 	}
 	print "</select></td></tr>";
     print "<tr><td colspan='2'><hr></td></tr>";
-    print "<tr><td colspan='2'><b>入院 </b><br /> ";
+    print "<tr><td colspan='2'><b>入院</b><br /> ";
 	print "从: <input name='from' 	onfocus='showCalendarControl(this);' type='text' size='12' /> ";
 	print "到: <input name='to' 	onfocus='showCalendarControl(this);' type='text' size='12' /></td></tr>";
     print "<tr><td colspan='2'><hr></td></tr>";
@@ -433,10 +433,6 @@ function searchAll($search) {
 			print "</form>";
 		} else {
 			print "<h4>Keine Patienteneintr&auml;ge vorhanden</h4>";
-		}
-		if ($search[2] <> ''){
-			print "<p><span class='errorMessage'>Hinweis f&uuml;r bessere Suchergebnisse:</span> <br>
-			Beispiel 'Schmidt' -> Eingabe Suchfeld: 'Schmi' damit alle Schreibvarianten (dt, tt und t) gefunden werden.</p>";
 		}
 		print "</fieldset>";
 	}

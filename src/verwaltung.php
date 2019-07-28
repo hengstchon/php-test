@@ -192,7 +192,7 @@ if (isset($_SESSION['userID']) == true) {
 					break;
 					case 1020:
 						if ($patientID == ''){
-							print "<h1>患者 - 调查</h1>";
+							print "<h1>患者 - 总览</h1>";
 							print "<p class='errorMessage'>Es wurde kein Patient ausgew&auml;hlt.</p>";
 							listAllPatients($capitalLetter);
 						} else {
@@ -262,7 +262,7 @@ if (isset($_SESSION['userID']) == true) {
 						listAllPatientsRecords('') ;
 					break;
 					case 3000:
-						print "<h1>患者 - 调查</h1>";
+						print "<h1>患者 - 总览</h1>";
 						listAllPatients($capitalLetter);
 					break;
 					case 3200:
@@ -425,7 +425,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "</fieldset>";
 					break;
 					case 4000:
-						print "<h1>Eigenes Arzt-Profil</h1>";
+						print "<h1>医生个人资料</h1>";
 						editArztWeb();
 					break;
 					case 4110:

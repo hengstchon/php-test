@@ -719,8 +719,10 @@ function listAllPatientsRecords($editStatus1) {
 			$db_request1	 = "SELECT patientRecordID, patientID FROM patientRecords  ORDER by patientID DESC , timestampCreated DESC";
 		} else {
 			$db_request1	 = "SELECT patientRecordID, patientID FROM patientRecords  WHERE editStatus = '$editStatus1' ORDER by patientID DESC ,  timestampCreated DESC";
+      $s = $db_request1;
 		}
 		$query_handle1   = mysql_query($db_request1, $db_handle);
+  cl(mysql_num_rows($query_handle1));
 		if ($query_handle1 != ""){
 			$rows1 = mysql_num_rows($query_handle1);
 			if ($rows1 == 0){
@@ -737,7 +739,7 @@ function listAllPatientsRecords($editStatus1) {
 						$patientID1	= $pID;
 					}
 				}
-				print "<p>按寄售日期排序</p>";
+				print "<p>按诊断日期排序</p>";
 				foreach ($patientIDs as $key => $patientID) {
 					$vname = schreibweise(getDBContent('patients', 'pFirstName', 'patientID', $patientID));
 					$nname = schreibweise(getDBContent('patients','pLastName', 'patientID', $patientID));
@@ -766,7 +768,7 @@ function listAllPatientsRecords($editStatus1) {
 function listPatientRecords($patientID) {
 	global $db_handle;
 	global $case,$x;
-	print "<h2>病人浏览查询</h2>";
+	print "<h2>患者浏览</h2>";
 	if (access()) {
 		if($case == 'dmt'){
 			print "<form method='post' action='DMT.php'>";
@@ -793,7 +795,7 @@ function listPatientRecords($patientID) {
 				$diagnosisArzt		= getArztInfos($diagnosisArztID);
 				$therapyArzt		= getArztInfos($therapyArztID);
 				$time			= strtotime($time);
-				$time	 		= date("d.m",$time) . '. (' . date("H:i",$time) . ' Uhr)';
+				$time	 		= date("d.m",$time) . '. (' . date("H:i",$time) . ' )';
 				if ($i3 > 0){
 					print "<hr>";
 				}
@@ -833,13 +835,13 @@ function listPatientRecords($patientID) {
 					include_once("DMT/nihss.php");
 				}
 				print "<div class='gruppe'>";
-				print "<h4 class='mini'>NIHSS</h4>";
+				print "<h4 class='mini'>卒中量表</h4>";
 				getNIHSSlistPlusButtons($patientRecordID);
 				print "<hr>";
 				addNIHSSForm($patientID,$patientRecordID);
 				print "</div>";
 				print "<div class='gruppe'>";
-				print "<h4 class='mini'>Thrombolyse</h4>";
+				print "<h4 class='mini'>溶栓</h4>";
 				getLyselistPlusButtons($patientID, $patientRecordID) ;
 				print "<hr>";
 				addThrombolyseForm($patientID,$patientRecordID);
