@@ -170,11 +170,11 @@ function searchAll($search) {
 		$pBdayT			= $search[3]. '. ' . monthName($search[4]) . ' ' . $search[5];
 		print "<h3>搜索</h3>";
 		if ((((((($search[0] <> '') OR ($search[1] <> '')) OR ($search[2] <> '')) OR ($search[3] <> '')) OR ($search[4] <> '')) OR ($search[5] <> '')) OR ($search[6] <> '')){
-			print "<b style='float:left;margin-right: 25px;'>Suchkriterien:</b> ";
+			print "<b style='float:left;margin-right: 25px;'>搜索条件:</b> ";
 		}
 		print "<ul>";
 		if ($search[0] <> ''){
-			print "<li style='float:left;margin-right: 25px;'>Zeitraum von $search[0] bis $search[1]</li>";
+			print "<li style='float:left;margin-right: 25px;'>时间从 $search[0] 到 $search[1]</li>";
 		}
 		if ($search[2] <> ''){
 			print "<li style='float:left;margin-right: 25px;'>患者姓名: $search[2]</li>";
@@ -260,7 +260,7 @@ function searchAll($search) {
 		}
 		print "<fieldset>";
 		if (count($patientIDs) > 0) {
-			print "<legend>Patienten ausw&auml;hlen:</legend>";
+			print "<legend>选择患者：</legend>";
 			if ($case == 'dmt'){
 				print "<form method='post' action='DMT.php'>";
 			}
@@ -396,9 +396,9 @@ function searchAll($search) {
 														$timeHospital	= strtotime($timeHospital);
 														$timeHospital	= date("d.m.Y",$timeHospital) ;
 														if ($editStatus == 'o'){
-															$editStatus = "offen";
+															$editStatus = "未处理";
 														} else {
-															$editStatus = "abgeschlossen";
+															$editStatus = "已处理";
 														}
 														print "<span class='mini'>";
 														if( ($i3 <> 0) AND ($i3 < $rows3)){
@@ -490,9 +490,9 @@ function searchPatientpBDayEmpty() {
 							$timeHospital	= strtotime($timeHospital);
 							$timeHospital	= date("d.m.Y",$timeHospital) ;
 							if ($editStatus == 'o'){
-								$editStatus = "offen";
+								$editStatus = "未处理";
 							} else {
-								$editStatus = "abgeschlossen";
+								$editStatus = "已处理";
 							}
 							if( ($i3 <> 0) AND ($i3 < $rows3)){
 								print " || ";

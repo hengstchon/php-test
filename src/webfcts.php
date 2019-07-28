@@ -108,7 +108,7 @@ function editArztWeb() {
 	print "<form method='Post' action='verwaltung.php'>";
 	print "<input type='hidden' name='x' value='4110' />";
 	print "<fieldset>";
-	print "<legend>Bearbeite eigenes Arzt-Profil (ID $arztID)</legend>";
+	print "<legend>编辑医生资料 (ID $arztID)</legend>";
 	if (access()) {
 		$db_request	 = "SELECT arztGender, acadTitle, arztFirstName, arztLastName, arztPhone, arztComment, userID, clinicID FROM aerzte Where arztID = '$arztID'"; 
 		$query_handle   = mysql_query($db_request, $db_handle);
@@ -142,7 +142,7 @@ function editArztWeb() {
 				print "<option value='w'>女士</option>";
 			}
 			print "</select>";
-			print " &nbsp; Title:";
+			print " &nbsp; 头衔：";
 			print "<input type='text' name='acadTitle' value='$acadTitle' size='20' />";
 			print "</td>";
 			print "</tr>";
@@ -155,7 +155,7 @@ function editArztWeb() {
 			print "<td><input type='text' name='arztLastName' value='$arztLastName' size='50' /></td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td>Klinik:</td>";
+			print "<td>诊所:</td>";
 			print "<td><select name='clinicID'>";
 			if ($clinicID <> 0){
 				print "<option value='$clinicID' selected>$clinicName ($clinicInitial) </option>";
@@ -188,18 +188,18 @@ function editArztWeb() {
 			print "<td>E-Mail:</td>";
 			print "<td><input type='text' name='userEMail' value='$userEMail' size='50' />";
 			print "<br>";
-			print "Notwendig, um ggf. Passwort zu zusenden</td>";
+			print "必要时发送密码</td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td>Login-Name:</td>";
+			print "<td>登录用户名:</td>";
 			print "<td><input type='text' name='userLogin' value='$userLogin' size='50' /></td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td>Passwort:</td>";
+			print "<td>密码:</td>";
 			print "<td><input type='text' name='userPW' value='$userPW' size='50' /></td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td valign='top'>Kommentar:</td>";
+			print "<td valign='top'>评论:</td>";
 			print "<td>";
 			print "<textarea cols='42' rows=5' name='arztComment'>$arztComment</textarea>";
 			print "</td>";
