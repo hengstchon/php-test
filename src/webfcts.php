@@ -47,11 +47,11 @@ function userLogin($userLogin, $userPW) {
 function navigation() {
 	global $pNavSign;
 	global $x;
-	$verwaltung[]	= array('vwName' => '新病人',		'vwCase' => '1000');
+	$verwaltung[]	= array('vwName' => '新患者',		'vwCase' => '1000');
 	$verwaltung[]	= array('vwName' => '未处理', 				'vwCase' => '2000');
 	$verwaltung[]	= array('vwName' => '已处理', 		'vwCase' => '2100');
 	$verwaltung[]	= array('vwName' => '所有患者', 		'vwCase' => '3000');
-	$verwaltung[]	= array('vwName' => '自己的个人资料', 		'vwCase' => '4000');
+	$verwaltung[]	= array('vwName' => '个人资料', 		'vwCase' => '4000');
 		print "<div id='navLayer'>";
 	foreach ($verwaltung as $key => $row) {
 		$vwName[$key]		= $row['vwName'];
@@ -96,7 +96,7 @@ function navPatient($patientID) {
 	$nname	= schreibweise(getDBContent('patients','pLastName', 'patientID',$patientID));
 	print "<a name='navPatient'></a>";
 	print "<fieldset>";
-	print "<legend id='navP2'>$pNavSign 病人浏览查询  $nname, $vname: </legend>";
+	print "<legend id='navP2'>$pNavSign 患者浏览查询  $nname, $vname: </legend>";
 	listPatientRecords($patientID);
 	print "</fieldset>";
 }
@@ -206,7 +206,7 @@ function editArztWeb() {
 			print "</tr>";
 			print "</table>";
 			print "<input type='hidden' name='userID' value='$userID' />";
-			print "<input type='submit' value='Daten speichern' class='buttonHome' />";
+			print "<input type='submit' value='资料保存' class='buttonHome' />";
 		} else {
 			print "<p class='errorMessage'>Datenbankabfrage nicht erfolgreich! [editArztWeb]</p>";
 		} 
@@ -560,13 +560,13 @@ function editPatientThrombolyseWeb($ptID) {
 					$timeHospital		= getDBContent('patientRecords','timeHospital', 'patientRecordID',$patientRecordID);					
 					if ($timeSymptoms <> "0000-00-00 00:00:00") { 
 						$timeSymptoms	= strtotime($timeSymptoms);
-						$timeSymptoms 	= date('d.m.Y H:i', $timeSymptoms) . " Uhr";
+						$timeSymptoms 	= date('Y.m.d H:i', $timeSymptoms) . " Uhr";
 					} else {
 						$timeSymptoms 	=  "nicht angegeben";
 					}
 					if ($timeHospital <> '0000-00-00 00:00:00') { 
 						$timeHospital	= strtotime($timeHospital);
-						$timeHospital 	= date('d.m.Y H:i', $timeHospital) . " Uhr";
+						$timeHospital 	= date('Y.m.d H:i', $timeHospital) . " Uhr";
 					} else {
 						$timeHospital 	= "nicht angegeben";
 					}		
@@ -739,7 +739,7 @@ function editPatientThrombolyseWeb($ptID) {
 										print "$rowHR"; 
 					$timeTherapy	= getDBContent('patientRecords','timeTreatment','patientRecordID',$patientRecordID);
 					$timeTherapyA 	= strtotime($timeTherapy);
-					$timeTherapy 	= date("d.m.Y. H:i", $timeTherapyA) . " Uhr";
+					$timeTherapy 	= date("Y.m.d. H:i", $timeTherapyA) . " Uhr";
 					print "<tr>";
 					print "<td valign='top'>";
 					print "<h4>Beginn Telekonsil:</h4>";
@@ -1488,17 +1488,17 @@ function showPatientThrombolyseWerteWeb($ptID) {
 					$bdDescrvorLyse 	= $data[50];		
 					$timeSymptoms		= getDBContent('patientRecords','timeSymptoms', 'patientRecordID',$patientRecordID);
 						$timeSymptoms	= strtotime($timeSymptoms);
-						$timeSymptoms 	= date('d.m.Y H:i', $timeSymptoms) . ' Uhr';
+						$timeSymptoms 	= date('Y.m.d H:i', $timeSymptoms) . ' Uhr';
 					$timeInitialContact	= getDBContent('patientRecords','timeInitialContact', 'patientRecordID',$patientRecordID);
 					$timeHospital		= getDBContent('patientRecords','timeHospital', 'patientRecordID',$patientRecordID);					
 					if ($timeHospital <> '0000-00-00 00:00:00') { 
 						$timeHospital	= strtotime($timeHospital);
-						$timeHospital 	= date('d.m.Y H:i', $timeHospital);
+						$timeHospital 	= date('Y.m.d H:i', $timeHospital);
 					}		
 					print "<table style='width:100%;border:1px solid #999;padding: 5px;font-size: 120%;font-weight: bold;line-height: 220%;margin:0px 0px 20px 0px;'>";
 					print "<tr>";
 					print "<td width=350>";
-					print "B症状的开始: ";
+					print "症状的开始: ";
 					print "</td><td>";
 					print "$timeSymptoms ";
 					print "</td>";
@@ -1636,7 +1636,7 @@ function showPatientThrombolyseWerteWeb($ptID) {
 										print "$rowHR"; 
 					$timeTherapy	= getDBContent('patientRecords','timeTreatment','patientRecordID',$patientRecordID);
 					$timeTherapyA 	= strtotime($timeTherapy);
-					$timeTherapy 	= date("d.m.Y. H:i", $timeTherapyA);
+					$timeTherapy 	= date("Y.m.d. H:i", $timeTherapyA);
 					print "<tr>";
 					print "<td valign='top'>";
 					print "<h4>Beginn Telekonsil:</h4>";
@@ -1744,9 +1744,9 @@ function showPatientThrombolyseWerteWeb($ptID) {
 					if (($timeLyseStart == '0000-00-00 00:00:00') AND  ($timeLyseEnd == '0000-00-00 00:00:00')){
 					} else {
 						$timeLS		= strtotime($timeLyseStart);
-						$timeLS		= date("d.m.Y H:i",$timeLS);
+						$timeLS		= date("Y.m.d H:i",$timeLS);
 						$timeLE		= strtotime($timeLyseEnd);
-						$timeLE		= date("d.m.Y H:i",$timeLE);
+						$timeLE		= date("Y.m.d H:i",$timeLE);
 						print "<tr>";
 						print "<td>";
 						print "<h4>Zeiten Lyse:</h4>";
@@ -1818,7 +1818,7 @@ function showPatientThrombolyseWerteWeb($ptID) {
 					print " &nbsp; Ranking-Score:";
 					print " $ranking ";
 					$entlassung		= strtotime($entlassung);
-					$entlassung		= date("d.m.Y H:i",$entlassung);
+					$entlassung		= date("Y.m.d H:i",$entlassung);
 					print " &nbsp; || &nbsp; am: ";
 					print "$entlassung nach: $entlassungNach"; 
 					print "</td>";

@@ -1068,13 +1068,13 @@ function editPatientThrombolyse($ptID) {
 					$timeHospital		= getDBContent('patientRecords','timeHospital', 'patientRecordID',$patientRecordID);	
 					if ($timeSymptoms <> "0000-00-00 00:00:00") { 
 						$timeSymptoms	= strtotime($timeSymptoms);
-						$timeSymptoms 	= date('d.m.Y H:i', $timeSymptoms) . " Uhr";
+						$timeSymptoms 	= date('Y.m.d H:i', $timeSymptoms);
 					} else {
 						$timeSymptoms 	=  "nicht angegeben";
 					}
 					if ($timeHospital <> '0000-00-00 00:00:00') { 
 						$timeHospital	= strtotime($timeHospital);
-						$timeHospital 	= date('d.m.Y H:i', $timeHospital) . " Uhr";
+						$timeHospital 	= date('Y.m.d H:i', $timeHospital);
 					} else {
 						$timeHospital 	= "nicht angegeben";
 					}		
@@ -1249,7 +1249,7 @@ function editPatientThrombolyse($ptID) {
 										print "$rowHR"; 
 					$timeTherapy	= getDBContent('patientRecords','timeTreatment','patientRecordID',$patientRecordID);
 					$timeTherapyA 	= strtotime($timeTherapy);
-					$timeTherapy 	= date("d.m.Y. H:i", $timeTherapyA) . "Uhr";
+					$timeTherapy 	= date("Y.m.d. H:i", $timeTherapyA) . "Uhr";
 					print "<tr>";
 					print "<td valign='top'>";
 					print "<h4>Beginn Telekonsil:</h4>";
@@ -2001,13 +2001,13 @@ function showPatientThrombolyseWerte($ptID) {
 					$timeHospital		= getDBContent('patientRecords','timeHospital', 'patientRecordID',$patientRecordID);		
 					if ($timeSymptoms <> "0000-00-00 00:00:00") { 
 						$timeSymptoms	= strtotime($timeSymptoms);
-						$timeSymptoms 	= date('d.m.Y H:i', $timeSymptoms);
+						$timeSymptoms 	= date('Y.m.d H:i', $timeSymptoms);
 					} else {
 						$timeSymptoms 	=  "nicht angegeben";
 					}
 					if ($timeHospital <> '0000-00-00 00:00:00') { 
 						$timeHospital	= strtotime($timeHospital);
-						$timeHospital 	= date('d.m.Y H:i', $timeHospital);
+						$timeHospital 	= date('Y.m.d H:i', $timeHospital);
 					} else {
 						$timeSymptoms 	= "nicht angegeben";
 					}		
@@ -2023,7 +2023,7 @@ function showPatientThrombolyseWerte($ptID) {
 					print "<td>";
 					print "入院 : ";
 					print "</td><td>";
-					print "$timeHospital Uhr ";
+					print "$timeHospital";
 					print "</td>";
 					print "</tr>";
 					print "<tr>";
@@ -2152,7 +2152,7 @@ function showPatientThrombolyseWerte($ptID) {
 										print "$rowHR"; 
 					$timeTherapy	= getDBContent('patientRecords','timeTreatment','patientRecordID',$patientRecordID);
 					$timeTherapyA 	= strtotime($timeTherapy);
-					$timeTherapy 	= date("d.m.Y. H:i", $timeTherapyA);
+					$timeTherapy 	= date("Y.m.d. H:i", $timeTherapyA);
 					print "<tr>";
 					print "<td valign='top'>";
 					print "<h4>Beginn Telekonsil:</h4>";
@@ -2261,9 +2261,9 @@ function showPatientThrombolyseWerte($ptID) {
 					if (($timeLyseStart == '0000-00-00 00:00:00') AND  ($timeLyseEnd == '0000-00-00 00:00:00')){
 					} else {
 						$timeLS		= strtotime($timeLyseStart);
-						$timeLS		= date("d.m.Y H:i",$timeLS);
+						$timeLS		= date("Y.m.d H:i",$timeLS);
 						$timeLE		= strtotime($timeLyseEnd);
-						$timeLE		= date("d.m.Y H:i",$timeLE);
+						$timeLE		= date("Y.m.d H:i",$timeLE);
 						print "<tr>";
 						print "<td>";
 						print "<h4>Zeiten Lyse:</h4>";
@@ -2335,7 +2335,7 @@ function showPatientThrombolyseWerte($ptID) {
 					print " &nbsp; Ranking-Score:";
 					print " $ranking ";
 					$entlassung		= strtotime($entlassung);
-					$entlassung		= date("d.m.Y H:i",$entlassung);
+					$entlassung		= date("Y.m.d H:i",$entlassung);
 					print " &nbsp; || &nbsp; am: ";
 					print "$entlassung nach: $entlassungNach"; 
 					print "</td>";

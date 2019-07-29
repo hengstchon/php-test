@@ -64,7 +64,7 @@ function searchPatientMenu(){
 	print "<tr><td><b>患者姓名:</b></td><td><input type='text' name='name' /></td></tr>";
     print "<tr><td colspan='2'><b>生日:</b> ";
 	print "<select name='pBdayDayS'>";
-	print "<option selected value=''>天</option>";
+	print "<option selected value=''>日</option>";
 	for ($i = 1; $i <= 31; $i++) {
 		if ($i < 10) {
 			print "<option value='0$i'>0$i</option>";
@@ -137,7 +137,7 @@ function searchYesterdayButton(){
 	if ($case == 'web'){
 		print "<form method='post' action='verwaltung.php'>";
 	}
-	$from	= date('d.m.Y', time()-(60*60*24));;
+	$from	= date('Y.m.d', time()-(60*60*24));;
 	print "<input type='hidden' name='x' value='1100' />";
 	print "<input type='hidden' name='from' value='$from' />";
 	print "<input type='submit' value='昨天'  class='buttonMini' style='width:80px;' />";
@@ -152,7 +152,7 @@ function searchTodayButton(){
 	if ($case == 'web'){
 		print "<form method='post' action='verwaltung.php'>";
 	}
-	$from	= date("d.m.Y");
+	$from	= date("Y.m.d");
 	print "<input type='hidden' name='x' value='1100' />";
 	print "<input type='hidden' name='from' value='$from' />";
 	print "<input type='submit' value='今天'  class='buttonMini' style='width:80px;'  />";
@@ -354,7 +354,7 @@ function searchAll($search) {
 											$info = '';
 											if ((($search[3] <> '') OR ($search[4] <> '')) OR ($search[5] <> '')){
 												if ($pBdayDay	== $search[3]){
-													$info	.= '天';
+													$info	.= '日';
 													$print2 = true;
 													$pBdayDay	= '<b>' . $pBdayDay . '</b>';
 												}
@@ -394,7 +394,7 @@ function searchAll($search) {
 														$timeHospital	= $data3 -> timeHospital;
 														$editStatus		= $data3 -> editStatus;
 														$timeHospital	= strtotime($timeHospital);
-														$timeHospital	= date("d.m.Y",$timeHospital) ;
+														$timeHospital	= date("Y.m.d",$timeHospital) ;
 														if ($editStatus == 'o'){
 															$editStatus = "未处理";
 														} else {
@@ -484,7 +484,7 @@ function searchPatientpBDayEmpty() {
 							$diagnosisArzt	= getArztInfosShort($diagnosisArztID);
 							$therapyArzt	= getArztInfosShort($therapyArztID);
 							$timeHospital	= strtotime($timeHospital);
-							$timeHospital	= date("d.m.Y",$timeHospital) ;
+							$timeHospital	= date("Y.m.d",$timeHospital) ;
 							if ($editStatus == 'o'){
 								$editStatus = "未处理";
 							} else {

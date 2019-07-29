@@ -58,7 +58,7 @@ if ($x == 10) {
 							$arztInfos				= getArztInfos($arztID);
 							if ($userLogin == 'notfall'){
 								$timestamp = $_SERVER['REQUEST_TIME'];
-								$datum = date("d.m.Y",$timestamp);
+								$datum = date("Y.m.d",$timestamp);
 								$uhrzeit = date("H:i:s",$timestamp);
 								$requestTime	=  $datum . " - " . $uhrzeit . " Uhr";
 								$requestInfos	= array($requestTime,$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT']);
@@ -447,7 +447,7 @@ if (isset($_SESSION['userID']) == true) {
 					break;
 					case 4210:
 						$timestamp = $_SERVER['REQUEST_TIME'];
-						$datum = date("d.m.Y",$timestamp);
+						$datum = date("Y.m.d",$timestamp);
 						$uhrzeit = date("H:i:s",$timestamp);
 						$requestTime	=  $datum . " - " . $uhrzeit . " Uhr";
 						$requestInfos	= array($requestTime,$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT'], $arztInfos, $arztComment);

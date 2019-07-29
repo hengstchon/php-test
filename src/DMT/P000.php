@@ -663,9 +663,9 @@ function getArztInfos($arztID) {
 		$clinicName	= getDBContent('clinics', 'clinicName', 'clinicID', $clinicID);
 		$clinicInitial = getDBContent('clinics', 'clinicInitial', 'clinicID', $clinicID);
 		$tel = getDBContent('aerzte', 'arztPhone', 'arztID', $arztID);
-		$arztInfos = $clinicName . ' - ' . $titel . ' ' . $vorname . ' ' . $name ;
+		$arztInfos = $clinicName . ' - ' . $titel . ' ' . $name . ' ' . $vorname ;
 		if ($tel <> ''){
-			$arztInfos = $clinicName . ' - ' . $titel . ' ' . $vorname . ' ' . $name . ' - Tel.:  ' . $tel;
+			$arztInfos = $clinicName . ' - ' . $titel . ' ' . $name . ' ' . $vorname . ' - Tel.:  ' . $tel;
 		}
 		return $arztInfos;
 	}

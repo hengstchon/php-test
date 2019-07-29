@@ -185,7 +185,6 @@ function patientsNavigation() {
 	print "<div id='letterNavLayer'>";
 	for ($i=65; $i <=90 ; $i++){
 		$capitalLetter = chr($i);
-    cl(nameExist($capitalLetter));
 		if (nameExist($capitalLetter) > 0) {
 			if ($case == 'web'){
 				print "<form method='post' action='verwaltung.php' class='capitalLetter' >";
@@ -456,7 +455,7 @@ function listPatients($pLastName) {
 function addPatientForm($pLastName) {
 	global $case;
 	print "<fieldset style='margin:20px 10px 20px 0px;width:220px;float:left;padding: 10px;'>";
-	print "<legend>创建新病人:</legend>";
+	print "<legend>创建新患者:</legend>";
 	if ($case == 'dmt'){
 		print "<form method='post' action='DMT.php'>";
 	}
@@ -465,7 +464,7 @@ function addPatientForm($pLastName) {
 	}
 	print "姓: <input type='text' name='pLastName' value='$pLastName' size='17' />";
 	print "<input type='hidden' name='x' value='1015' />";
-	print "<input type='submit' value='保存病人资料'  style='width:100%;' class='buttonMini' />";
+	print "<input type='submit' value='保存患者资料'  style='width:100%;' class='buttonMini' />";
 	print "</form>";
 	print "</fieldset>";
 	include_once("search.php");
@@ -524,7 +523,7 @@ function editPatient($patientID) {
 			}
 			print "<select name='pBdayDay' style='float:left;margin-right: 5px;'>";
 			if ($pBdayDay == "00"){
-				print "<option selected value=''>天</option>";
+				print "<option selected value=''>日</option>";
 			} else {
 				print "<option selected value='$pBdayDay'>$pBdayDay</option>";
 			}
@@ -644,9 +643,7 @@ function savePatient($pDataArray) {
 			}
 		} else {
 			$nname		= $pDataArray[2];
-      cl($nname);
       $nnamepy = getInitials($nname);
-      cl($nnamepy);
 			$where = 'patientID, pLastName, pLastNamePy';
 			$value = "'NULL','$nname', '$nnamepy'";
 			$db_request = "INSERT INTO patients (" . $where . ") VALUES (" . $value . ")";
@@ -679,9 +676,9 @@ function showPatient($patientID) {
 			$pPhone			= $data1[6];
 			$pBday			= $data1[7];
 			if($pGender == 'w'){
-				$pGenderText = "女士 ";
+				$pGenderText = "女士";
 			} else {
-				$pGenderText = "先生 ";
+				$pGenderText = "先生";
 			}
 			$pFirstName	= schreibweise($pFirstName);
 			$pLastName	= schreibweise($pLastName);
@@ -693,7 +690,7 @@ function showPatient($patientID) {
 				$pBdayMonth		=	'';
 			}
 			$pBdayDay		=	$pBday1[2];
-			print "<legend>$pLastName, $pFirstName (出生日期: $pBdayDay. $pBdayMonth $pBdayYear)</legend>";
+			print "<legend>$pLastName, $pFirstName (出生日期: $pBdayYear $pBdayMonth $pBdayDay)</legend>";
 		} else {
 			print "<p class='errorMessage'>Datenbankabfrage nicht erfolgreich! [editPatient($patientID)]</p>";
 		}
@@ -722,7 +719,6 @@ function listAllPatientsRecords($editStatus1) {
       $s = $db_request1;
 		}
 		$query_handle1   = mysql_query($db_request1, $db_handle);
-  cl(mysql_num_rows($query_handle1));
 		if ($query_handle1 != ""){
 			$rows1 = mysql_num_rows($query_handle1);
 			if ($rows1 == 0){
@@ -746,7 +742,7 @@ function listAllPatientsRecords($editStatus1) {
 					$bDay	= getDBContent('patients', 'pBday', 'patientID', $patientID);
 					if ($bDay <> "0000-00-00"){
 						$bDay		= strtotime($bDay);
-						$bDay		= date("d.m.Y",$bDay);
+						$bDay		= date("Y.m.d",$bDay);
 					}
 					print "<fieldset>";
 					print "<legend>$nname, $vname (出生日期 $bDay, id: $patientID)</legend>";
@@ -795,7 +791,7 @@ function listPatientRecords($patientID) {
 				$diagnosisArzt		= getArztInfos($diagnosisArztID);
 				$therapyArzt		= getArztInfos($therapyArztID);
 				$time			= strtotime($time);
-				$time	 		= date("d.m",$time) . '. (' . date("H:i",$time) . ' )';
+				$time	 		= date("m.d",$time) . '. (' . date("H:i",$time) . ' )';
 				if ($i3 > 0){
 					print "<hr>";
 				}
@@ -839,12 +835,6 @@ function listPatientRecords($patientID) {
 				getNIHSSlistPlusButtons($patientRecordID);
 				print "<hr>";
 				addNIHSSForm($patientID,$patientRecordID);
-				print "</div>";
-				print "<div class='gruppe'>";
-				print "<h4 class='mini'>溶栓</h4>";
-				getLyselistPlusButtons($patientID, $patientRecordID) ;
-				print "<hr>";
-				addThrombolyseForm($patientID,$patientRecordID);
 				print "</div>";
 				print "<div class='clear'></div>";
 			}
@@ -1073,9 +1063,9 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "<td>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>日期:  </div>";
 			print "<div style='float:left;margin:0px 15px 0px 0px;'>";
-			createDayFields('timeSymptomsDay', $timeSymptomsD);
-			createMonthFields('timeSymptomsMonth', $timeSymptomsM);
 			createYearFields('timeSymptomsYear', $timeSymptomsY);
+			createMonthFields('timeSymptomsMonth', $timeSymptomsM);
+			createDayFields('timeSymptomsDay', $timeSymptomsD);
 			print "</div>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>时间:</div>";
 			print "<div style='float:left;background-color:#FF0000;'> ";
@@ -1085,7 +1075,6 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "<div style='float:left;background-color:#FF0000;'>";
 			createMinutesFields('timeSymptomsMinutes', $timeSymptomsMin);
 			print "</div> ";
-			print "<div style='float:left;margin:10px 0px 10px 3px;'>Uhr</div>";
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
@@ -1116,13 +1105,13 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td> 最后一次看到病人没有症状 :</td>";
+			print "<td> 最后一次看到患者没有症状 :</td>";
 			print "<td>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>日期:  </div>";
 			print "<div style='float:left;margin:0px 15px 0px 0px;'>";
-			createDayFields('timeGesundDay', $timeGesundD);
-			createMonthFields('timeGesundMonth', $timeGesundM);
 			createYearFields('timeGesundYear', $timeGesundY);
+			createMonthFields('timeGesundMonth', $timeGesundM);
+			createDayFields('timeGesundDay', $timeGesundD);
 			print "</div>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>时间:</div>";
 			print "<div style='float:left;background-color:#999966;'> ";
@@ -1132,7 +1121,6 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "<div style='float:left;background-color:#999966;'>";
 			createMinutesFields('timeGesundMinutes', $timeGesundMin);
 			print "</div> ";
-			print "<div style='float:left;margin:10px 0px 10px 3px;'>Uhr</div>";
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
@@ -1155,9 +1143,9 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "<td>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>日期:  </div>";
 			print "<div style='float:left;margin:0px 15px 0px 0px;'>";
-			createDayFields('timeHospitalDay', $timeHD);
-			createMonthFields('timeHospitalMonth', $timeHM);
 			createYearFields('timeHospitalYear', $timeHY);
+			createMonthFields('timeHospitalMonth', $timeHM);
+			createDayFields('timeHospitalDay', $timeHD);
 			print "</div>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>时间:</div>";
 			print "<div style='float:left;background-color:#FF9900;'> ";
@@ -1167,7 +1155,6 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "<div style='float:left;background-color:#FF9900;'>";
 			createMinutesFields('timeHospitalMinutes', $timeHMin);
 			print "</div> ";
-			print "<div style='float:left;margin:10px 0px 10px 3px;'>Uhr</div>";
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
@@ -1193,7 +1180,6 @@ function editPatientRecordDiagnose($patientRecordID) {
 				print "<div style='float:left;background-color:blue;'>";
 				createMinutesFields('timeDiagnosisMinutes', $timeSMin);
 				print "</div> ";
-				print "<div style='float:left;margin:10px 0px 10px 3px;'>Uhr</div>";
 				print "</td>";
 				print "</tr>";
 				print "<tr>";
@@ -1357,7 +1343,7 @@ function editPatientRecordTherapy($patientRecordID) {
 			print "<input type='hidden' name='patientRecordID' value='$patientRecordID' />";
 			hiddenDiagnosisFields($patientRecordID);
 			print "<table cellspacing='0' cellpadding='0' style='margin: 5px 0px 0px 0px;line-height:200%;'>";
-			print "<tr><td  width='175'>$therapyButton Arzt: </td>";
+			print "<tr><td  width='175'>$therapyButton 医生: </td>";
 			print "<td>";
 			if ($case == 'dmt'){
 				print "<select name='therapyArztID'>";
@@ -1404,9 +1390,9 @@ function editPatientRecordTherapy($patientRecordID) {
 			print "<td>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>日期:  </div>";
 			print "<div style='float:left;margin:0px 35px 0px 0px;'>";
-			createDayFields('timeTreatmentDay', $timeTD);
-			createMonthFields('timeTreatmentMonth', $timeTM);
 			createYearFields('timeTreatmentYear', $timeTY);
+			createMonthFields('timeTreatmentMonth', $timeTM);
+			createDayFields('timeTreatmentDay', $timeTD);
 			print "</div>";
 			print "<div style='float:left;margin:10px 5px 10px 0px'>时间:</div>";
 			print "<div style='float:left;background-color:#FF0000;'> ";
@@ -1416,7 +1402,6 @@ function editPatientRecordTherapy($patientRecordID) {
 			print "<div style='float:left;background-color:#FF0000;'>";
 			createMinutesFields('timeTreatmentMinutes', $timeTMin);
 			print "</div> ";
-			print "<div style='float:left;margin:10px 0px 10px 0px;'>Uhr</div>";
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
@@ -1444,7 +1429,7 @@ function editPatientRecordTherapy($patientRecordID) {
 			}
 			print "</td>";
 			print "</tr>";
-			print "<tr><td valign='top'>临床​实验:</td><td>";
+			print "<tr><td valign='top'>临床实验:</td><td>";
 			print "<textarea class='ckeditor' name='therapyDescr' rows='8' cols='40'>$therapyDescr</textarea>";
 			print "</td>";
 			print "</tr>";
@@ -1453,7 +1438,7 @@ function editPatientRecordTherapy($patientRecordID) {
 			print "</td>";
 			print "<td class='borderUnten'>";
 			getTotalNIHSSWerte($patientRecordID);
-			print "<br>输入其他NIHSS值: <input type='text' name='nihssTotal' size='3' /><br>";
+			print "<br>输入其他卒中量表值: <input type='text' name='nihssTotal' size='3' /><br>";
 			getNIHSSlist($patientRecordID);
 			print "</td>";
 			print "</tr>";
@@ -1836,7 +1821,7 @@ function showPatientRecord($patientRecordID){
 				print "<td>$infoDA2</td>";
 				print "</tr>";
 				$timeTreatment		= strtotime($timeTreatment);
-				$timeTreatment	 	= date("d.m.y",$timeTreatment) . '. ' . date("H:i",$timeTreatment) . ' Uhr';
+				$timeTreatment	 	= date("y.m.d",$timeTreatment) . '. ' . date("H:i",$timeTreatment);
 				print "<tr>";
 				print "<td>检查:</td>";
 				print "<td>$timeTreatment</td>";
@@ -1846,29 +1831,29 @@ function showPatientRecord($patientRecordID){
 					$konsilTypeText	= "电话";
 				}
 				if ($konsilType == 'b'){
-					$konsilTypeText	= "电话 & Bild";
+					$konsilTypeText	= "影像和电话";
 				}
 				if ($konsilType == 'v'){
 					$konsilTypeText	= "视频检查";
 				}
 				$controll1 = 0;
 				if ($visualData[0] == 'on'){
-					$ctOptionText	= "CT: Ja, ";
+					$ctOptionText	= "CT: 是, ";
 				} else {
 					$ctOptionText	= "";
 				}
 				if ($visualData[1] == 'on'){
-					$mrtOptionText	= "MRT: Ja, ";
+					$mrtOptionText	= "MRT: 是, ";
 				} else {
 					$mrtOptionText	= "";
 				}
 				if ($visualData[2] == 'on'){
-					$videoOptionText	= "视频检查: Ja, ";
+					$videoOptionText	= "视频检查: 是, ";
 				} else {
 					$videoOptionText	= "";
 				}
 				if ($visualData[3] == 'on'){
-					$angioOptionText	= "Angio: Ja";
+					$angioOptionText	= "Angio: 是";
 				} else {
 					$angioOptionText	= "";
 				}
@@ -1878,7 +1863,7 @@ function showPatientRecord($patientRecordID){
 				}
 				if (($controll1 == 1) OR ($controll2 == 1)){
 					print "<tr>";
-					print "<td>Weiteres:</td>";
+					print "<td>其他:</td>";
 					print "<td>";
 					if ($konsilTypeText <> ''){
 						echo "诊断类型:  $konsilTypeText, ";
@@ -1891,18 +1876,18 @@ function showPatientRecord($patientRecordID){
 				}
 				if ($visualDataDescr <> ''){
 					print "<tr>";
-					print "<td valign='top' class='borderUnten'>Bildbewertung: </td>";
+					print "<td valign='top' class='borderUnten'>影像评分: </td>";
 					print "<td valign='top' class='borderUnten'>$visualDataDescr</td>";
 					print "</tr>";
 				}
 				if ($therapyDescr <> ''){
 					print "<tr>";
-					print "<td valign='top' class='borderUnten'>临床​实验: </td>";
+					print "<td valign='top' class='borderUnten'>临床实验: </td>";
 					print "<td valign='top' class='borderUnten'>$therapyDescr</td>";
 					print "</tr>";
 				}
 				print "<tr>";
-				print "<td valign='top' class='borderUnten'>NIHSS:";
+				print "<td valign='top' class='borderUnten'>卒中量表:";
 				print "</td>";
 				print "<td class='borderUnten'>";
 				getTotalNIHSSWerte($patientRecordID);
@@ -1933,7 +1918,7 @@ function showPatientRecord($patientRecordID){
 				print " </td>";
 				print "<td>";
 				print "<div id='ks'>";
-				print "($indication2Code)	$indication2 - Lokalit&auml;t: ($indication2DCode)	$indication2D";
+				print "($indication2Code)	$indication2 - 部位: ($indication2DCode)	$indication2D";
 				print "</div>";
 				print "</td>";
 				print "</tr>";
@@ -1970,22 +1955,22 @@ function showPatientRecordDiagnose($patientRecordID, $case){
 			$symptomsText2		= $data1[15];
 			$timeSymptomsGesund = $data1[16];
 			$timeInitialContact	= strtotime($timeInitialContact);
-			$timeInitialContact	= date("d.m.y",$timeInitialContact) . '. ' . date("H:i",$timeInitialContact) . ' Uhr';
+			$timeInitialContact	= date("y.m.d",$timeInitialContact) . '. ' . date("H:i",$timeInitialContact);
 			$timeHospital		= strtotime($timeHospital);
-			$timeHospital	 	= date("d.m.y",$timeHospital) . '. ' . date("H:i",$timeHospital) . ' Uhr';
+			$timeHospital	 	= date("y.m.d",$timeHospital) . '. ' . date("H:i",$timeHospital);
 			$timeDiagnosis		= strtotime($timeDiagnosis);
-			$timeDiagnosis	 	= date("d.m.y",$timeDiagnosis) . '. ' . date("H:i",$timeDiagnosis) . ' Uhr';
+			$timeDiagnosis	 	= date("y.m.d",$timeDiagnosis) . '. ' . date("H:i",$timeDiagnosis);
 			if ($timeSymptoms == '0000-00-00 00:00:00') {
 				$timeSymptoms 		= '没有迹象' ;
 			} else {
 				$timeSymptoms		= strtotime($timeSymptoms);
-				$timeSymptoms	 	= date("d.m.y",$timeSymptoms) . '. ' . date("H:i",$timeSymptoms) . ' Uhr';
+				$timeSymptoms	 	= date("y.m.d",$timeSymptoms) . '. ' . date("H:i",$timeSymptoms);
 			}
 			if ($timeSymptomsGesund == '0000-00-00 00:00:00') {
 				$timeSymptomsGesund		= '没有迹象' ;
 			} else {
 				$timeSymptomsGesund		= strtotime($timeSymptomsGesund);
-				$timeSymptomsGesund	 	= date("d.m.y",$timeSymptomsGesund) . '. ' . date("H:i",$timeSymptomsGesund) . ' Uhr';
+				$timeSymptomsGesund	 	= date("y.m.d",$timeSymptomsGesund) . '. ' . date("H:i",$timeSymptomsGesund);
 			}
 			$clinicName		= getDBContent('clinics','clinicName','clinicID',$clinicID);
 			$clinicInitial	= getDBContent('clinics','clinicInitial','clinicID',$clinicID);
@@ -1997,7 +1982,7 @@ function showPatientRecordDiagnose($patientRecordID, $case){
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td valign='top'>时间规定:</td>";
+			print "<td valign='top'>时间:</td>";
 			print "<td>";
 			print "<b>症状的开始:</b> ";
 			print "$timeSymptoms ";
@@ -2014,7 +1999,7 @@ function showPatientRecordDiagnose($patientRecordID, $case){
 				print " $symptomsText";
 			}
 			print "<br />";
-			print "<b>最后一次看到病人没有症状:</b> $timeSymptomsGesund";
+			print "<b>最后一次看到患者没有症状:</b> $timeSymptomsGesund";
 			print "<br />";
 			print "<b>入院 :</b> $timeHospital ";
 			print "<br />";
@@ -2050,11 +2035,11 @@ function showPatientRecordDiagnose($patientRecordID, $case){
 			} else {
 				print "<tr>";
 				print "<td valign='top'>";
-				print "Weiteres:";
+				print "其他:";
 				print "</td>";
 				print "<td>";
 				if (($pDrugs <> '') OR ($medicationRows > 0)){
-					print "<b药物: </b> ";
+					print "<b>药物: </b> ";
 				}
 				if ($pDrugs <> ''){
 					print "$pDrugs, ";
@@ -2153,7 +2138,7 @@ function getNIHSSlist($patientRecordID) {
 			$rows1 = mysql_num_rows($query_handle1);
 			if ($rows1 == 0){
 			} else {
-				print "<span class='mini'>NIHSS Dokumentationen:</span>";
+				print "<span class='mini'>卒中量表档案:</span>";
 				for ($i1 = 0; $i1 < $rows1; $i1++){
 					$data1		  = mysql_fetch_row($query_handle1);
 					$pnID			= $data1[0];
@@ -2161,9 +2146,9 @@ function getNIHSSlist($patientRecordID) {
 					$nArztID		= $data1[2];
 					$nArzt			= getArztInfosShort($nArztID);
 					$timeNIHSS		= strtotime($timeNIHSS);
-					$timeNIHSS 		= date("d.m.Y",$timeNIHSS) . ' (' . date("H:i",$timeNIHSS) . ' Uhr)';
+					$timeNIHSS 		= date("Y.m.d",$timeNIHSS) . ' (' . date("H:i",$timeNIHSS) . ' )';
 					$nihssTotal		=  getTotalNIHSSviaSUM($pnID);
-					print "<li style='list-style-type: none;' class='mini'>Wert: <b>$nihssTotal</b>, $timeNIHSS</li>";
+					print "<li style='list-style-type: none;' class='mini'>评分值: <b>$nihssTotal</b>, $timeNIHSS</li>";
 				}
 			}
 		}
@@ -2188,7 +2173,7 @@ function getNIHSSlistPlusButtons($patientRecordID) {
 					$patientID		= $data1[3];
 					$nArzt			= getArztInfosShort($nArztID);
 					$timeNIHSS		= strtotime($timeNIHSS);
-					$timeNIHSS 		= date("d.m.",$timeNIHSS) . ' (' . date("H:i",$timeNIHSS) . ' Uhr)';
+					$timeNIHSS 		= date("d.m.",$timeNIHSS) . ' (' . date("H:i",$timeNIHSS) . ' )';
 					$nihssTotal		=  getTotalNIHSSviaSUM($pnID);
 					if ($case =='dmt'){
 						include_once("nihss.php");
@@ -2196,7 +2181,7 @@ function getNIHSSlistPlusButtons($patientRecordID) {
 					if ($case =='web'){
 						include_once("DMT/nihss.php");
 					}
-					print "<li style='list-style-type: none;' class='mini'>Dok.-Wert: <b>$nihssTotal</b>, $timeNIHSS</li>";
+					print "<li style='list-style-type: none;' class='mini'>档案值: <b>$nihssTotal</b>, $timeNIHSS</li>";
 					$editStatus		= getDBContent('patientRecords','editStatus','patientRecordID',$patientRecordID);
 					if ($editStatus == 't'){
 						showNIHSSForm($patientID, $pnID);
@@ -2296,7 +2281,7 @@ function getTotalNIHSSWerte($patientRecordID) {
 					$nihssTotal	 	= $data2 -> nihssTotal;
 					if ($nihssTotal > 0) {
 						$counter++;
-						print "<li style='list-style-type:none;float: left;margin: 0 8px 0 0;' class='mini'>$counter. NIHSS: <b>$nihssTotal</b></li>";
+						print "<li style='list-style-type:none;float: left;margin: 0 8px 0 0;' class='mini'>$counter. 卒中量表: <b>$nihssTotal</b></li>";
 					}
 				}
 				print "<div class='clear'></div>";
@@ -2366,7 +2351,7 @@ function getLyselistPlusButtons($patientID, $patientRecordID) {
 					$time			= $data[1];
 					$tArztID		= $data[2];
 					$time			= strtotime($time);
-					$time 			= date("d.m.",$time) . ' (' . date("H:i",$time) . ' Uhr)';
+					$time 			= date("d.m.",$time) . ' (' . date("H:i",$time) . ' )';
 					$tArzt			= getArztInfosShort($tArztID);
 					if ($i > 0){
 						print "<hr>";
