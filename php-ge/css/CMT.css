@@ -1,0 +1,111 @@
+
+/* ------------------------------------*/
+body {
+	background-color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	margin: 0px 3px;
+}
+
+h1 {
+	font-size: 140%;
+	line-height: 160%;
+	font-weight: bold;
+	border-bottom: 1px solid #000;
+	padding: 3px 15px;
+	margin: 3px 0px 15px 0px;
+	letter-spacing: 2px;	
+	background-color: #c9e5fb;
+}
+
+h2 {
+	font-size: 120%;
+	line-height: 150%;
+	font-weight: bold;
+	margin: 10px 0px 11px 0px;
+	padding: 3px 15px;
+	border-bottom: 1px dashed #add9ff;
+	background-color: #e0effb;
+}
+h3{
+	font-size: 110%;
+	line-height: 120%;
+	font-weight: bold;
+	margin: 7px 0px 5px 0px;
+	padding: 3px;
+	color: #666;   
+	border-bottom: 1px dashed #add9ff;
+	background-color: #e0effb;
+}
+
+a {color: #003366; }
+a:hover { color: #FF9900; }
+a:active { color: #990000; }
+
+input, textarea, radio, checkbox {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	margin: 3px 9px 9px 0px;
+	padding: 3px;
+	background: #FFF;
+}
+.padding { /* DMT table ua */
+width: 100%;
+	padding: 3px 15px;
+}
+fieldset {
+	margin: 0px 10px;
+	padding: 3px;
+	vertical-align:top;
+}
+legend {
+	font-size: 105%;
+	line-height: 130%;
+	font-weight: bold;
+	color: #333;
+}
+
+.form1 { /* home DMT */
+	width: 250px;
+	height: 150px;
+    text-align:center;
+    float: left;
+	margin:3px 3px;
+	border: 1px dotted #CCC;
+	background-color: #d1e9fd;
+	padding: 5px;
+}
+
+.workLayer3a { /* patients */
+	width: 65%;
+    float: left;
+	margin:1px 3px 3px 0px;
+}
+.workLayer3b { /* patients */
+	width: 30%;
+    float: left;
+	margin:1px 3px 3px 0px;
+}
+
+#seitenTitle {
+	font-size: 150%;
+	line-height: 160%;
+	font-weight: bold;
+	border-bottom: 1px solid #000;
+	padding: 3px 15px;
+	margin: 23px 0px 15px 0px;
+	letter-spacing: 3px;	
+}
+#nav {
+	width: 100%;
+	height:40px;
+	margin:0px 0px 20px 0px;
+	border-bottom: 1px solid #999;
+	background-color: #4b97d4;
+	padding: 5px 15px;
+}
+#nav form {
+	float: left;
+	margin:0px;
+	padding: 0px;
+}

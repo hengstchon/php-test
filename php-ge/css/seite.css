@@ -1,0 +1,220 @@
+
+body{
+	background-color: #e0effb;
+}
+h1 { /* seitenname im header */
+	font-size: 155%;
+	font-weight: bold;
+	color:  #000; /* 315aad */
+	border-bottom: 1px solid #000;
+	letter-spacing: 3px;
+	padding: 5px;
+	margin: 20px 0px 10px 0px;
+	text-align: center;
+}
+h2 {
+	font-size: 110%;
+	line-height: 130%;
+	font-weight: bold;
+	padding: 0px 0px;
+	margin: 3px 0px;
+}
+
+h3{
+	font-size: 110%;
+	line-height: 120%;
+	font-weight: bold;
+	margin: 5px 0px 11px 0px;
+	padding: 3px;
+	color: #666;   
+	border-bottom: 1px dashed #add9ff;
+	background-color: #e0effb;
+}
+
+#show{ /* h3 in listPatientRecords P0001*/
+	border-bottom: 1px dashed #a29982;
+	background-color: #c0b9a6;
+}
+hr {
+	color: #ccc;
+	margin: 5px 0px 5px 0px;
+}
+a {
+	color: #FF6600;
+}
+a:hover {
+	color: #FF9900;
+}
+
+a:active {
+	color: #FF3300;
+	text-decoration: none;
+}
+fieldset {
+	border: 1px solid #000;
+	padding: 5px 10px;
+	margin: 5px 0px 5px 0px;
+}
+legend{
+	background-color:#fff;
+	margin: 0px 0px 5px 0px;
+	border-bottom: 1px dashed #ccc;
+    padding: 3px 7px ;
+	font-weight: bold;
+    font-Size: 105%;
+}
+
+/* ======================================== */
+/* Design */
+/* ========================================*/
+#outline {  
+    width: 780px; 
+    margin: 10px auto 0; 
+	background-color: #fff;
+	padding: 10px 0px;	
+
+	border-radius: 12px;/* CSS3 */
+	-moz-border-radius-topleft: 12px;
+	-moz-border-radius-topright: 12px;/* Firefox */
+	-webkit-border-radius: 12px;/* Safari, Chrome */
+	-khtml-border-radius: 12px;/* Konqueror */
+	boxshadow: 4px 4px 4px #184477;
+	-moz-box-shadow: 4px 4px 4px #184477;
+	filter: progid:DXImageTransform.Microsoft.Shadow(strench=4, color=#184477, direction=135); 
+
+
+}
+#header {
+	margin: 0px 0px 0px 0px; 
+	padding: 50px 0px 0px 0px;
+	background-image: url(../imagesLayout/stenoLogo.gif);
+	background-repeat: no-repeat;
+}
+#printGrafik {
+	display:none;
+}
+#headerInfo1 {/* zusatz ueber seitenname im header */
+	font-weight: bold;
+	padding: 0px;
+	margin: 10px 0px 0px 0px;
+	text-align: center;
+}
+#infoOben { /* datim arztname logoutButton */
+	text-align:right;
+	margin: 0px 0px 10px 0px; 
+}
+#inhalt { /* rahmen um alle inhalte > texte */
+	margin: 0px 0px 0px 0px;
+	padding: 5px 30px 20px 30px;
+}
+/* ======================================== */
+/* Navigation */
+/* ======================================== */
+/* oben */
+/* ======================================== */
+#nav1 { 
+	margin: 4px 0px 0px 10px; 
+	padding: 0px 0px 0px 0px;   
+}
+.button1 {	/* verwaltung navigation nach login  ganz am anfang*/
+	width: 170px;
+	height: 70px;
+	font-size: 110%;
+	font-weight: bold;
+	padding: 7px 7px 15px 7px;
+	background-color: #d5e8f7;
+	margin:30px 10px 20px 0px;
+}
+
+#infoOben {/* username, logout button 
+	border: 1px solid #ccc;
+    background-color: #4b97d4;*/
+	margin: 0px 0px 15px 0px;
+
+}
+.logout{ 
+	float:right;
+	margin: 0px 0px 5px 10px;
+}
+#navLayer {
+	text-align:center;
+	margin: 5px 0px 5px 0px ;
+	border: 1px solid #ccc;
+    padding: 3px ;
+}
+#navLayer form{
+	display:inline;
+    margin: 0px 0px 0px 0px;
+    }
+#navLayer input {
+	text-align:center;
+    width:14%;
+    font-weight: bold;
+    padding: 5px 1px;
+    margin: 0px 1px 0px 0px;
+    
+    border-right: 1px solid #333;
+    border-left: 1px solid #DDD;
+    background-color: #4b97d4;
+    color: #FFF;
+}
+#navP { /* navigation oben Patient link */
+	text-align:center;
+    width:14%;
+    font-weight: bold;
+	font-size: 80%;
+    padding: 8px 15px;
+    margin: 0px 0px 0px 0px;
+    
+    border-right: 1px solid #666;
+    border-left: 1px solid #ccc;
+    background-color: #185c93;
+    color: #FFF;
+}
+#navP a {
+	text-decoration: none;
+	color: #FFF;
+}
+#navP2 { /* unten legend navPatient */
+    padding: 3px 5px;
+    margin: 10px 0px 10px 0px;
+    background-color: #185c93;
+	color: #FFF;
+}
+/* ======================================== */
+/* unten */
+/* ======================================== */
+#nav2 { /* unikliniken logos unten */
+	margin: 25px 0px 15px 0px ;
+    height: 100px;
+	background-image: url(../imagesLayout/klinikenLogos.gif);
+	background-repeat: no-repeat;
+}
+#dokuInfos { /* freigabe */
+	text-align: center;
+	font-size: 90%;
+	width: 100%;
+	color: #666;
+	border-top: 1px solid #666;
+}
+/* ======================================== */
+/* seiteninhalte */
+/* ======================================== */
+
+
+/* ======================================== */
+/* unterschriften arzt */
+/* ======================================== */
+#unterschriftenTeil{
+	padding: 10px 20px;
+	border: 1px solid #ccc;
+    background-color: #fee7e7; /* fef9e8  */
+	margin: 10px 0px 10px 0px;
+}
+.float1 { /* unterschriftsteil */
+	float:left;
+	margin: 0px 50px 0px 0px;
+}
+#spamIMG {/* unterschriftsteil */
+	margin: 3px 50px 0px 5px;
+}

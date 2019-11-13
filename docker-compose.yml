@@ -6,6 +6,7 @@ services:
       - '80:80'
     volumes:
       - ./src:/var/www/html/
+      # - ./php-ge:/var/www/html/
 
   db:
     image: mysql:5.5
