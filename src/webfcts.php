@@ -146,12 +146,12 @@ function editArztWeb() {
 			print "<input type='text' name='acadTitle' value='$acadTitle' size='20' />";
 			print "</td>";
 			print "</tr>";
-			print "<tr>";
-			print "<td>名:</td>";
-			print "<td><input type='text' name='arztFirstName' value='$arztFirstName' size='50' /></td>";
-			print "</tr>";
-			print "<tr>";
-			print "<td>姓:</td>";
+			// print "<tr>";
+			// print "<td>名:</td>";
+			// print "<td><input type='text' name='arztFirstName' value='$arztFirstName' size='50' /></td>";
+			// print "</tr>";
+			// print "<tr>";
+			print "<td>姓名:</td>";
 			print "<td><input type='text' name='arztLastName' value='$arztLastName' size='50' /></td>";
 			print "</tr>";
 			print "<tr>";

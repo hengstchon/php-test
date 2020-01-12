@@ -347,7 +347,7 @@ function listAllPatients($capitalLetter) {
 						print "<tr>";
 						print "<td class='borderUnten'><span class='mini'>$count </span></td>";
 						print "<td class='borderUnten' align='top'>";
-						print "<b>$pLastName</b>, $pFirstName  (出生日期 $pBdayYear.$pBdayMonth.$pBdayDay, id: $patientID) <br>";
+						print "<b>$pLastName</b> $pFirstName  (出生日期 $pBdayYear.$pBdayMonth.$pBdayDay, id: $patientID) <br>";
 						if ($fallAktenAnz > 0 ){
 							if ($fallAktenAnz == 1 ){
 								print "$fallAktenAnz Konsilschein vorhanden";
@@ -372,7 +372,7 @@ function listAllPatients($capitalLetter) {
 					}
 					if ($case == 'web'){
 						print "<li><input type='radio' name='patientID' value='$patientID' />";
-						print " <b>$pLastName</b>, $pFirstName (出生日期: $pBdayYear.$pBdayMonth.$pBdayDay)</li>";
+						print " $pLastName$pFirstName (出生日期: $pBdayYear.$pBdayMonth.$pBdayDay)</li>";
 					}
 				}
 				if ($case == 'dmt'){
@@ -404,7 +404,7 @@ function listPatients($pLastName) {
 		$query_handle1   = mysql_query($db_request1, $db_handle);
 		if ($query_handle1 != ""){
 			print "<fieldset>";
-			print "<legend>选择姓 '$pLastName1' 的患者</legend>";
+			print "<legend>选择姓名为 '$pLastName1' 的患者</legend>";
 			if ($case == 'dmt'){
 				print "<form method='post' action='DMT.php'>";
 			}
@@ -413,7 +413,7 @@ function listPatients($pLastName) {
 			}
 			print "<input type='hidden' name='x' value='1020' />";
 			$rows1 = mysql_num_rows($query_handle1);
-			print "已存在姓 '$pLastName1' 的患者：";
+			print "已存在姓名为 '$pLastName1' 的患者：";
 			print "<ol style='line-height:190%;'>";
 			for ($i1 = 0; $i1 < $rows1; $i1++){
 				$data1		  = mysql_fetch_row($query_handle1);
@@ -462,7 +462,7 @@ function addPatientForm($pLastName) {
 	if ($case == 'web'){
 		print "<form method='post' action='verwaltung.php'>";
 	}
-	print "姓: <input type='text' name='pLastName' value='$pLastName' size='17' />";
+	print "姓名: <input type='text' name='pLastName' value='$pLastName' size='17' />";
 	print "<input type='hidden' name='x' value='1015' />";
 	print "<input type='submit' value='保存患者资料'  style='width:100%;' class='buttonMini' />";
 	print "</form>";
@@ -515,8 +515,8 @@ function editPatient($patientID) {
 			}
 			print "</td>";
 			print "</tr>";
-			print "<tr><td>名:</td><td> <input name='pFirstName' value='$pFirstName' /></td></tr>";
-			print "<tr><td>姓:</td><td> <input name='pLastName' value='$pLastName' /></td></tr>";
+			// print "<tr><td>名:</td><td> <input name='pFirstName' value='$pFirstName' /></td></tr>";
+			print "<tr><td>姓名:</td><td> <input name='pLastName' value='$pLastName' /></td></tr>";
 			print "<tr><td>出生日期 (年.月.日):</td><td>";
 			if ($pBday == "0000-00-00"){
 				print "<p style='float:left;margin:11px 5px;'>请选择: </p>";
@@ -745,7 +745,7 @@ function listAllPatientsRecords($editStatus1) {
 						$bDay		= date("Y.m.d",$bDay);
 					}
 					print "<fieldset>";
-					print "<legend>$nname, $vname (出生日期 $bDay, id: $patientID)</legend>";
+					print "<legend>$nname$vname (出生日期 $bDay, id: $patientID)</legend>";
 					listPatientRecords($patientID);
 					print "</fieldset>";
 				}
@@ -2173,7 +2173,7 @@ function getNIHSSlistPlusButtons($patientRecordID) {
 					$patientID		= $data1[3];
 					$nArzt			= getArztInfosShort($nArztID);
 					$timeNIHSS		= strtotime($timeNIHSS);
-					$timeNIHSS 		= date("d.m.",$timeNIHSS) . ' (' . date("H:i",$timeNIHSS) . ' )';
+					$timeNIHSS 		= date("m.d.",$timeNIHSS) . ' (' . date("H:i",$timeNIHSS) . ' )';
 					$nihssTotal		=  getTotalNIHSSviaSUM($pnID);
 					if ($case =='dmt'){
 						include_once("nihss.php");

@@ -137,7 +137,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "<legend>创建新患者</legend>";
 						print "<form method='post' action='verwaltung.php'>";
 						print "<input type='hidden' name='x' value='1010' />";
-						print "<p>输入患者的姓氏: <input type='text' name='pLastName' /></p>";
+						print "<p>输入患者的姓名: <input type='text' name='pLastName' /></p>";
 						print "<p><input type='submit' value='登记患者'  class='buttonHome' /></p>";
 						print "</form>";
 						print "</fieldset>";
