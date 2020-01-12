@@ -22,8 +22,7 @@ if ($_SERVER['SERVER_NAME'] == "localhost") { //use localhost
 	$db_user			= 'root';
 	$db_pw				= 'root';
 } else  {
-	$db_host			= 'db';
-	// $db_host			= 'localhost';
+	$db_host			= 'localhost';
 	$db_name			= 'cn';
 	$db_user			= 'root';
 	$db_pw				= 'root';

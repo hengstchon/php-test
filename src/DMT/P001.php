@@ -347,7 +347,7 @@ function listAllPatients($capitalLetter) {
 						print "<tr>";
 						print "<td class='borderUnten'><span class='mini'>$count </span></td>";
 						print "<td class='borderUnten' align='top'>";
-						print "<b>$pLastName</b>, $pFirstName  (出生日期 $pBdayDay.$pBdayMonth.$pBdayYear, id: $patientID) <br>";
+						print "<b>$pLastName</b>, $pFirstName  (出生日期 $pBdayYear.$pBdayMonth.$pBdayDay, id: $patientID) <br>";
 						if ($fallAktenAnz > 0 ){
 							if ($fallAktenAnz == 1 ){
 								print "$fallAktenAnz Konsilschein vorhanden";
@@ -372,7 +372,7 @@ function listAllPatients($capitalLetter) {
 					}
 					if ($case == 'web'){
 						print "<li><input type='radio' name='patientID' value='$patientID' />";
-						print " <b>$pLastName</b>, $pFirstName (出生日期: $pBdayDay.$pBdayMonth.$pBdayYear)</li>";
+						print " <b>$pLastName</b>, $pFirstName (出生日期: $pBdayYear.$pBdayMonth.$pBdayDay)</li>";
 					}
 				}
 				if ($case == 'dmt'){
@@ -404,7 +404,7 @@ function listPatients($pLastName) {
 		$query_handle1   = mysql_query($db_request1, $db_handle);
 		if ($query_handle1 != ""){
 			print "<fieldset>";
-			print "<legend>Vorhandenen Patieneneintrag mit dem Nachnamen '$pLastName1' ausw&auml;hlen</legend>";
+			print "<legend>选择姓 '$pLastName1' 的患者</legend>";
 			if ($case == 'dmt'){
 				print "<form method='post' action='DMT.php'>";
 			}
@@ -413,7 +413,7 @@ function listPatients($pLastName) {
 			}
 			print "<input type='hidden' name='x' value='1020' />";
 			$rows1 = mysql_num_rows($query_handle1);
-			print "Es gibt bereits Patienten mit dem Nachnamen '$pLastName1'.";
+			print "已存在姓 '$pLastName1' 的患者：";
 			print "<ol style='line-height:190%;'>";
 			for ($i1 = 0; $i1 < $rows1; $i1++){
 				$data1		  = mysql_fetch_row($query_handle1);
@@ -439,7 +439,7 @@ function listPatients($pLastName) {
 					$pBdayMonth		=	$pBday1[1];
 					$pBdayDay		=	$pBday1[2];
 				print "<li><input type='radio' name='patientID' value='$patientID' />";
-				print " $pLastName,  $pFirstName (出生日期: $pBdayDay.$pBdayMonth.$pBdayYear)</li>";
+				print " $pLastName,  $pFirstName (出生日期: $pBdayYear.$pBdayMonth.$pBdayDay)</li>";
 			}
 			print "</ol>";
 			print "<input type='submit' value='选择选定的患者' class='buttonHome' />";
@@ -499,7 +499,7 @@ function editPatient($patientID) {
 			if ($pLastName == ''){
 				print "<legend>患者资料 - 输入 (id: $patientID)</legend>";
 			} else {
-				print "<legend>$pLastName, $pFirstName (出生日期 $pBdayDay.$pBdayMonth.$pBdayYear | id: $patientID)</legend>";
+				print "<legend>$pLastName, $pFirstName (出生日期 $pBdayYear.$pBdayMonth.$pBdayDay | id: $patientID)</legend>";
 			}
 			print "<input type='hidden' name='patientID' value='$patientID' />";
 			print "<table cellspacing='0' cellpadding='0' style='margin: 5px 0px 0px 0px;line-height:200%;'>";
@@ -517,21 +517,22 @@ function editPatient($patientID) {
 			print "</tr>";
 			print "<tr><td>名:</td><td> <input name='pFirstName' value='$pFirstName' /></td></tr>";
 			print "<tr><td>姓:</td><td> <input name='pLastName' value='$pLastName' /></td></tr>";
-			print "<tr><td>出生日期 日期 (TT.MM.JJJJ):</td><td>";
+			print "<tr><td>出生日期 (年.月.日):</td><td>";
 			if ($pBday == "0000-00-00"){
 				print "<p style='float:left;margin:11px 5px;'>请选择: </p>";
 			}
-			print "<select name='pBdayDay' style='float:left;margin-right: 5px;'>";
-			if ($pBdayDay == "00"){
-				print "<option selected value=''>日</option>";
-			} else {
-				print "<option selected value='$pBdayDay'>$pBdayDay</option>";
+			print "<select name='pBdayYear' style='float:left;margin-right: 5px;'>";
+			if ($pBdayYear == '0000'){
+				print "<option value=''>年</option>";
+			}  else {
+				print "<option selected value='$pBdayYear'>$pBdayYear</option>";
 			}
-			for ($i = 1; $i <= 31; $i++) {
-				if ($i < 10) {
-					print "<option value='0$i'>0$i</option>";
-				} else {
-					print "<option value='$i'>$i</option>";
+			$currentYear = date('Y') ;
+			$startjahr	= $currentYear - 110 ;
+			for ($i=0; $i < 110; $i++){
+				$year = $startjahr + $i;
+				if ($pBdayYear <> $year){
+					print "<option value='$year'>$year</option>";
 				}
 			}
 			print "</select>";
@@ -551,18 +552,17 @@ function editPatient($patientID) {
 				}
 			}
 			print "</select>";
-			print "<select name='pBdayYear'>";
-			if ($pBdayYear == '0000'){
-				print "<option value=''>年</option>";
-			}  else {
-				print "<option selected value='$pBdayYear'>$pBdayYear</option>";
+			print "<select name='pBdayDay' style='float:left;margin-right: 5px;'>";
+			if ($pBdayDay == "00"){
+				print "<option selected value=''>日</option>";
+			} else {
+				print "<option selected value='$pBdayDay'>$pBdayDay</option>";
 			}
-			$currentYear = date('Y') ;
-			$startjahr	= $currentYear - 110 ;
-			for ($i=0; $i < 110; $i++){
-				$year = $startjahr + $i;
-				if ($pBdayYear <> $year){
-					print "<option value='$year'>$year</option>";
+			for ($i = 1; $i <= 31; $i++) {
+				if ($i < 10) {
+					print "<option value='0$i'>0$i</option>";
+				} else {
+					print "<option value='$i'>$i</option>";
 				}
 			}
 			print "</select>";

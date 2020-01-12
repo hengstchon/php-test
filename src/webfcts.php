@@ -233,7 +233,7 @@ function saveArztLoginWeb($userID, $userLogin, $userPW, $userEMail) {
 							$data2	   = mysql_fetch_row($query_handle2); 
 							$userID1	= $data2[0];
 							if ($userID1 <> $userID) {   
-								print "<p class='errorMessage'>Der Login Name wurde nicht gespeichert, da dieser schon existiert.</p>";
+								print "<p class='errorMessage'>登陆用户名已存在，保存失败</p>";
 								$loginCheck = false;
 							}
 						} 

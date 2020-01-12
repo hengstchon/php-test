@@ -63,14 +63,13 @@ function searchPatientMenu(){
 	print "<table cellpadding='0' cellspacing='1' border='0' width='100%'>";
 	print "<tr><td><b>患者姓名:</b></td><td><input type='text' name='name' /></td></tr>";
     print "<tr><td colspan='2'><b>生日:</b> ";
-	print "<select name='pBdayDayS'>";
-	print "<option selected value=''>日</option>";
-	for ($i = 1; $i <= 31; $i++) {
-		if ($i < 10) {
-			print "<option value='0$i'>0$i</option>";
-		} else {
-			print "<option value='$i'>$i</option>";
-		}
+	print "<select name='pBdayYearS'>";
+	print "<option value=''>年</option>";
+	$currentYear = date('Y') ;
+	$startjahr	= $currentYear - 110 ;
+	for ($i=0; $i < 110; $i++){
+		$year = $startjahr + $i;
+		print "<option value='$year'>$year</option>";
 	}
 	print "</select>";
 	print "<select name='pBdayMonthS'>";
@@ -84,13 +83,14 @@ function searchPatientMenu(){
 		}
 	}
 	print "</select>";
-	print "<select name='pBdayYearS'>";
-	print "<option value=''>年</option>";
-	$currentYear = date('Y') ;
-	$startjahr	= $currentYear - 110 ;
-	for ($i=0; $i < 110; $i++){
-		$year = $startjahr + $i;
-		print "<option value='$year'>$year</option>";
+	print "<select name='pBdayDayS'>";
+	print "<option selected value=''>日</option>";
+	for ($i = 1; $i <= 31; $i++) {
+		if ($i < 10) {
+			print "<option value='0$i'>0$i</option>";
+		} else {
+			print "<option value='$i'>$i</option>";
+		}
 	}
 	print "</select></td></tr>";
     print "<tr><td colspan='2'><hr></td></tr>";
@@ -383,7 +383,7 @@ function searchAll($search) {
 											if ($print2){
 												print "<li style='margin-bottom:5px;'>";
 												print "<input type='radio' name='patientID' value='$patientID' /> ";
-												print "$pGender $pLastName,  $pFirstName (出生日期: $pBdayDay.$pBdayMonth.$pBdayYear$info)";
+												print "$pGender $pLastName,  $pFirstName (出生日期: $pBdayYear.$pBdayMonth.$pBdayDay$info)";
 												$db_request3	 = "SELECT  * FROM patientRecords WHERE patientID = '$patientID' ORDER by patientRecordID DESC";
 												$query_handle3   = mysql_query($db_request3, $db_handle);
 												if ($query_handle3 != ""){
@@ -469,7 +469,7 @@ function searchPatientpBDayEmpty() {
 					$pBdayYear	= '<b>0000</b>';
 					print "<li style='margin-bottom:5px;'>";
 					print "<input type='radio' name='patientID' value='$patientID' /> ";
-					print "$pGender $pLastName,  $pFirstName (出生日期: $pBdayDay.$pBdayMonth.$pBdayYear)";
+					print "$pGender $pLastName,  $pFirstName (出生日期: $pBdayYear.$pBdayMonth.$pBdayDay)";
 					$db_request3	 = "SELECT  * FROM patientRecords WHERE patientID = '$patientID' ORDER by patientRecordID DESC";
 					$query_handle3   = mysql_query($db_request3, $db_handle);
 					if ($query_handle3 != ""){

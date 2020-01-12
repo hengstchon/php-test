@@ -21,7 +21,7 @@
 
 
 
-$adminEMailAdresse		= "hengstchon@gmail.com";
+$adminEMailAdresse		= "Mateusz.Scibor@uk-erlangen.de";
 $administrator			= "Hr. Scibor";
 $timestamp 				= $_SERVER['REQUEST_TIME'];
 date_default_timezone_set("Europe/Berlin");
