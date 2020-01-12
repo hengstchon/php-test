@@ -499,7 +499,7 @@ function editPatient($patientID) {
 			if ($pLastName == ''){
 				print "<legend>患者资料 - 输入 (id: $patientID)</legend>";
 			} else {
-				print "<legend>$pLastName, $pFirstName (出生日期 $pBdayYear.$pBdayMonth.$pBdayDay | id: $patientID)</legend>";
+				print "<legend>$pLastName$pFirstName (出生日期 $pBdayYear.$pBdayMonth.$pBdayDay | id: $patientID)</legend>";
 			}
 			print "<input type='hidden' name='patientID' value='$patientID' />";
 			print "<table cellspacing='0' cellpadding='0' style='margin: 5px 0px 0px 0px;line-height:200%;'>";
