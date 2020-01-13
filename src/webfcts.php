@@ -48,8 +48,8 @@ function navigation() {
 	global $pNavSign;
 	global $x;
 	$verwaltung[]	= array('vwName' => '新患者',		'vwCase' => '1000');
-	$verwaltung[]	= array('vwName' => '未处理', 				'vwCase' => '2000');
-	$verwaltung[]	= array('vwName' => '已处理', 		'vwCase' => '2100');
+	$verwaltung[]	= array('vwName' => '待处理', 				'vwCase' => '2000');
+	$verwaltung[]	= array('vwName' => '处理完毕', 		'vwCase' => '2100');
 	$verwaltung[]	= array('vwName' => '所有患者', 		'vwCase' => '3000');
 	$verwaltung[]	= array('vwName' => '个人资料', 		'vwCase' => '4000');
 		print "<div id='navLayer'>";
@@ -130,16 +130,16 @@ function editArztWeb() {
 			$clinicInitial	= getDBContent('clinics','clinicInitial','clinicID',$clinicID);
  			print "<table cellspacing='0' cellpadding='5' width=100%'>";
 			print "<tr>";
-			print "<td>称呼:</td>";
+			print "<td>性别:</td>";
 			print "<td><select name='arztGender'>";
 			if($arztGender == 'w'){
-				$arztGenderText = "女士 ";
+				$arztGenderText = "女 ";
 				print "<option value='$arztGender' selected>$arztGenderText</option>";
-				print "<option value='m'>先生</option>";
+				print "<option value='m'>男</option>";
 			} else {
-				$arztGenderText = "先生 ";
+				$arztGenderText = "男 ";
 				print "<option value='$arztGender' selected>$arztGenderText</option>";
-				print "<option value='w'>女士</option>";
+				print "<option value='w'>女</option>";
 			}
 			print "</select>";
 			print " &nbsp; 头衔：";
@@ -387,7 +387,7 @@ function addRecordForm($patientID) {
 	print "<form method='post' action='verwaltung.php' >";
 	print "<input type='hidden' name='x' value='3320' />";
 	print "<input type='hidden' name='patientID' value='$patientID' />";
-	print "<input type='submit' value='新 诊断文件' class='buttonNew' />";
+	print "<input type='submit' value='新诊断文件' class='buttonNew' />";
 	print "</form>";
 	print "<div class='clear'></div>";
 }	  
@@ -575,14 +575,14 @@ function editPatientThrombolyseWeb($ptID) {
 					print "<table style='width:100%;border:1px solid #999;padding: 5px;font-size: 105%;font-weight: bold;line-height: 210%;margin:0px 0px 10px 0px;'>";
 					print "<tr>";
 					print "<td width='300'>";
-					print "症状的开始: ";
+					print "发病时间: ";
 					print "</td><td>";
 					print "$timeSymptoms ";
 					print "</td>";				
 					print "</tr>";
 					print "<tr>";
 					print "<td>";
-					print "入院 : ";
+					print "入院时间 : ";
 					print "</td><td>";
 					print "$timeHospital ";
 					print "</td>";
@@ -1049,9 +1049,9 @@ function editPatientThrombolyseWeb($ptID) {
 					print "</td>";
 					print "<td colspan='2'>";
 					if ($nihssWert7days <> 0){
-						print "卒中量表: <input type='text' name='nihssWert7days' value='$nihssWert7days' size='5' />";
+						print "卒中量表(NIHSS): <input type='text' name='nihssWert7days' value='$nihssWert7days' size='5' />";
 					} else {
-						print "卒中量表: <input type='text' name='nihssWert7days' size='5' />";
+						print "卒中量表(NIHSS): <input type='text' name='nihssWert7days' size='5' />";
 					}
 					print " &nbsp; Ranking-Score:";
 					for ($i=1; $i<=6;$i++){
@@ -1498,14 +1498,14 @@ function showPatientThrombolyseWerteWeb($ptID) {
 					print "<table style='width:100%;border:1px solid #999;padding: 5px;font-size: 120%;font-weight: bold;line-height: 220%;margin:0px 0px 20px 0px;'>";
 					print "<tr>";
 					print "<td width=350>";
-					print "症状的开始: ";
+					print "发病时间: ";
 					print "</td><td>";
 					print "$timeSymptoms ";
 					print "</td>";
 					print "</tr>";
 					print "<tr>";
 					print "<td>";
-					print "入院 : ";
+					print "入院时间 : ";
 					print "</td><td>";
 					print "$timeHospital Uhr ";
 					print "</td>";

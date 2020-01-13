@@ -31,7 +31,7 @@ function addNIHSSForm($patientID,$patientRecordID) {
 	print "<input type='hidden' name='x' value='3220' />";
 	print "<input type='hidden' name='patientID' value='$patientID' />";
 	print "<input type='hidden' name='patientRecordID' value='$patientRecordID' />";
-	print "<input type='submit' value='新 卒中量表' class='buttonNew' />";
+	print "<input type='submit' value='新卒中量表(NIHSS)' class='buttonNew' />";
 	print "</form>";
 }
 
@@ -139,7 +139,7 @@ function editPatientNIHSSWerte($pnID) {
 	$time		= getDBContent('patientNIHSS','timeNIHSS','pnID',$pnID);
 	$time		= strtotime($time);
 	$time		= date("Y.m.d H:i", $time);
-	print " <hr>卒中量表 (id: $pnID) 医生: $arztInfos, 日期: $time <hr>";
+	print " <hr>卒中量表(NIHSS) (id: $pnID) 医生: $arztInfos, 日期: $time <hr>";
 	$nr			= 1;
  	if (access()) {
 		if($case == 'dmt'){
@@ -423,7 +423,7 @@ function showPatientNIHSSWerte($pnID) {
 	$time		= getDBContent('patientNIHSS','timeNIHSS','pnID',$pnID);
 	$time		= strtotime($time);
 	$time		= date("Y.m.d. H:i", $time);
-	print "<h2>卒中量表检查医生: $arztInfos, 日期: $time&nbsp;</h2>";
+	print "<h2>卒中量表(NIHSS)检查医生: $arztInfos, 日期: $time&nbsp;</h2>";
 	if (access()) {
 		print "<ol id='list1'>";
 		$db_request	 = "SELECT nihssStepID, pWert1, pWert2, pWert3, pWert4, pWert5, pWertDescr FROM patientNIHSSWerte WHERE pnID = '$pnID' ORDER by nihssStepID";

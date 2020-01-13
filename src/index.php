@@ -124,7 +124,7 @@ if (isset($_SESSION['userID']) == true) {
 					print "<h1>Bitte Profil vervollst&auml;ndigen</h1>";
 					editArztWeb();
 				} else {
-					print "<h1><img src='imagesLayout/blinkenRot.gif'> 未处理 - 诊断文件</h1>";
+					print "<h1><img src='imagesLayout/blinkenRot.gif'> 待处理 - 诊断文件</h1>";
 					listAllPatientsRecords('o') ;
 				}
 			}
@@ -165,7 +165,7 @@ if (isset($_SESSION['userID']) == true) {
 								print "</fieldset>";
 								print "</form>";
 							} else {
-								print "<h1><img src='imagesLayout/blinkenRot.gif'> 未处理 - 诊断文件</h1>";
+								print "<h1><img src='imagesLayout/blinkenRot.gif'> 待处理 - 诊断文件</h1>";
 								listAllPatientsRecords('o') ;
 							}
 						}
@@ -184,7 +184,7 @@ if (isset($_SESSION['userID']) == true) {
 							print "</fieldset>";
 							print "</form>";
 						} else {
-							print "<h1><img src='imagesLayout/blinkenRot.gif'> 未处理 - 诊断文件</h1>";
+							print "<h1><img src='imagesLayout/blinkenRot.gif'> 待处理 - 诊断文件</h1>";
 							listAllPatientsRecords('o') ;
 						}
 					break;
@@ -248,7 +248,7 @@ if (isset($_SESSION['userID']) == true) {
 						addPatientForm('');
 					break;
 					case 2000:
-						print "<h1><img src='imagesLayout/blinkenRot.gif'> 未处理 - 诊断文件</h1>";
+						print "<h1><img src='imagesLayout/blinkenRot.gif'> 待处理 - 诊断文件</h1>";
 						listAllPatientsRecords('o') ;
 					break;
 					case 2100:
@@ -359,7 +359,7 @@ if (isset($_SESSION['userID']) == true) {
 							print "<input type='hidden' name='x' value='1035' />";
 							hiddenTherapyFields($patientRecordID);
 							editPatientRecordDiagnose($patientRecordID);
-							print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
+							print "<input type='submit' value=' >>> 保存诊断文件 >>> ' class='buttonHome' />";
 							print "</form>";
 							print "</fieldset>";
 						} else {

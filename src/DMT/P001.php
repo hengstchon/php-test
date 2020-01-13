@@ -325,9 +325,9 @@ function listAllPatients($capitalLetter) {
 					$pPhone 		= $data1[7];
 					$pGender	 	= $data1[8];
 					if($pGender == 'w'){
-						$pGender = "女士 ";
+						$pGender = "女 ";
 					} else {
-						$pGender = "先生  ";
+						$pGender = "男  ";
 					}
 					$pFirstName	= schreibweise($pFirstName);
 					$pLastName	= schreibweise($pLastName);
@@ -427,9 +427,9 @@ function listPatients($pLastName) {
 				$pPhone 		= $data1[7];
 				$pGender	 	= $data1[8];
 				if($pGender == 'w'){
-					$pGender = "女士 ";
+					$pGender = "女 ";
 				} else {
-					$pGender = "先生  ";
+					$pGender = "男  ";
 				}
 				$pFirstName	= schreibweise($pFirstName);
 				$pLastName	= schreibweise($pLastName);
@@ -504,14 +504,14 @@ function editPatient($patientID) {
 			print "<input type='hidden' name='patientID' value='$patientID' />";
 			print "<table cellspacing='0' cellpadding='0' style='margin: 5px 0px 0px 0px;line-height:200%;'>";
 			print "<tr>";
-			print "<td width='175'>称呼:</td>";
+			print "<td width='175'>性别:</td>";
 			print "<td>";
 			if($pGender == 'w'){
-				print "<input type='radio' name='pGender' value='w' checked> 女士 ";
-				print "<input type='radio' name='pGender' value='m'> 先生 ";
+				print "<input type='radio' name='pGender' value='w' checked> 女 ";
+				print "<input type='radio' name='pGender' value='m'> 男 ";
 			} else {
-				print "<input type='radio' name='pGender' value='w'> 女士 ";
-				print "<input type='radio' name='pGender' value='m' checked> 先生 ";
+				print "<input type='radio' name='pGender' value='w'> 女 ";
+				print "<input type='radio' name='pGender' value='m' checked> 男 ";
 			}
 			print "</td>";
 			print "</tr>";
@@ -676,9 +676,9 @@ function showPatient($patientID) {
 			$pPhone			= $data1[6];
 			$pBday			= $data1[7];
 			if($pGender == 'w'){
-				$pGenderText = "女士";
+				$pGenderText = "女";
 			} else {
-				$pGenderText = "先生";
+				$pGenderText = "男";
 			}
 			$pFirstName	= schreibweise($pFirstName);
 			$pLastName	= schreibweise($pLastName);
@@ -690,7 +690,7 @@ function showPatient($patientID) {
 				$pBdayMonth		=	'';
 			}
 			$pBdayDay		=	$pBday1[2];
-			print "<legend>$pLastName, $pFirstName (出生日期: $pBdayYear $pBdayMonth $pBdayDay)</legend>";
+			print "<legend>$pLastName$pFirstName (出生日期: $pBdayYear $pBdayMonth $pBdayDay)</legend>";
 		} else {
 			print "<p class='errorMessage'>Datenbankabfrage nicht erfolgreich! [editPatient($patientID)]</p>";
 		}
@@ -807,8 +807,8 @@ function listPatientRecords($patientID) {
 					print "<h3 id='show' class='mini'>";
 				}
 				$nr = $rows3 - $i3;
-				print "$nr. 文件 --- 入院 : $time </h3> ";
-				print "<p class='mini'>请求的医生: $diagnosisArzt<br>";
+				print "$nr. 文件 --- 入院时间 : $time </h3> ";
+				print "<p class='mini'>申请医生: $diagnosisArzt<br>";
 				if ($therapyArztID <> 0){
 					print "检查医生: $therapyArzt";
 				}
@@ -831,7 +831,7 @@ function listPatientRecords($patientID) {
 					include_once("DMT/nihss.php");
 				}
 				print "<div class='gruppe'>";
-				print "<h4 class='mini'>卒中量表</h4>";
+				print "<h4 class='mini'>卒中量表(NIHSS)</h4>";
 				getNIHSSlistPlusButtons($patientRecordID);
 				print "<hr>";
 				addNIHSSForm($patientID,$patientRecordID);
@@ -1015,7 +1015,7 @@ function editPatientRecordDiagnose($patientRecordID) {
 			hiddenTherapyFields($patientRecordID);
 			print "<table cellspacing='0' cellpadding='0' style='margin: 5px 0px 0px 0px;'>";
 			print "<tr>";
-			print "<td width='175'>请求的医生: </td>";
+			print "<td width='175'>申请医生: </td>";
 			print "<td>";
 			if ($case == 'dmt'){
 				print "<select name='diagnosisArztID'>";
@@ -1059,7 +1059,7 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td>症状的开始:</td>";
+			print "<td>发病时间:</td>";
 			print "<td>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>日期:  </div>";
 			print "<div style='float:left;margin:0px 15px 0px 0px;'>";
@@ -1105,7 +1105,7 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td> 最后一次看到患者没有症状 :</td>";
+			print "<td> 最近一次无症状时间 :</td>";
 			print "<td>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>日期:  </div>";
 			print "<div style='float:left;margin:0px 15px 0px 0px;'>";
@@ -1139,7 +1139,7 @@ function editPatientRecordDiagnose($patientRecordID) {
 				print "</tr>";
 			}
 			print "<tr>";
-			print "<td>入院 :</td>";
+			print "<td>入院时间 :</td>";
 			print "<td>";
 			print "<div style='float:left;margin:10px 5px 10px 0px;'>日期:  </div>";
 			print "<div style='float:left;margin:0px 15px 0px 0px;'>";
@@ -1192,7 +1192,7 @@ function editPatientRecordDiagnose($patientRecordID) {
 				print "<input type='hidden' name='timeDiagnosis' value='$timeDiagnosis' />";
 			}
 			print "<tr>";
-			print "<td valign='top'>当前病历: </td><td>";
+			print "<td valign='top'>现病史: </td><td>";
 			print "<textarea class='ckeditor' name='symptomDescr' rows='8' cols='40'>$symptomDescr</textarea>";
 			print "</td>";
 			print "</tr>";
@@ -1239,7 +1239,7 @@ function editPatientRecordDiagnose($patientRecordID) {
 			print "<hr>";
 			print "</td>";
 			print "</tr>";
-			print "<tr><td>已知疾病/<br>风险因素:</td><td>";
+			print "<tr><td>既往相关病史/<br>风险因素:</td><td>";
 			print "<textarea rows='2' cols='30' name='pConditions'>$pConditions</textarea>";
 			print "<br />";
 			$db_request5	 = "SELECT conditionID, conditionName FROM infoConditions ";
@@ -1434,11 +1434,11 @@ function editPatientRecordTherapy($patientRecordID) {
 			print "</td>";
 			print "</tr>";
 			print "<tr>";
-			print "<td valign='top' class='borderUnten'>卒中量表:";
+			print "<td valign='top' class='borderUnten'>卒中量表(NIHSS):";
 			print "</td>";
 			print "<td class='borderUnten'>";
 			getTotalNIHSSWerte($patientRecordID);
-			print "<br>输入其他卒中量表值: <input type='text' name='nihssTotal' size='3' /><br>";
+			print "<br>输入其他卒中量表(NIHSS)值: <input type='text' name='nihssTotal' size='3' /><br>";
 			getNIHSSlist($patientRecordID);
 			print "</td>";
 			print "</tr>";
@@ -1456,9 +1456,9 @@ function editPatientRecordTherapy($patientRecordID) {
 				print "<input type='checkbox' name='visualData[1]'> MRT &nbsp; &nbsp; &nbsp; &nbsp; ";
 			}
 			if ($visualData[3] == 'on'){
-				print "<input type='checkbox' name='visualData[3]' checked> Angio";
+				print "<input type='checkbox' name='visualData[3]' checked> CTA";
 			} else {
-				print "<input type='checkbox' name='visualData[3]'> Angio";
+				print "<input type='checkbox' name='visualData[3]'> CTA";
 			}
 			print " &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; ";
 			if ($visualData[2] == 'on'){
@@ -1472,7 +1472,7 @@ function editPatientRecordTherapy($patientRecordID) {
 			print "<textarea class='ckeditor' name='visualDataDescr' rows='6' cols='40'>$visualDataDescr</textarea>";
 			print "</td>";
 			print "</tr>";
-			print "<tr><td valign='top'><b>疑似诊断:</b></td><td>";
+			print "<tr><td valign='top'><b>初步诊断:</b></td><td>";
 			print "<textarea class='ckeditor' name='therapyDescr2' rows='6' cols='40'>$therapyDescr2</textarea>";
 			print "</td>";
 			print "</tr>";
@@ -1517,9 +1517,9 @@ function editPatientRecordTherapy($patientRecordID) {
 			print "</table>";
 			print "<h3>状况</h3>";
 			print "<p>";
-			print "<input type='radio' name='editStatus' value='o'> 未处理 （未处理的咨询案例）<br>";
-			print "<input type='radio' name='editStatus' value='t' checked> 已处理（已经处理完毕）<br>";
-			print "<input type='submit' value='评估和治疗建议 保存' class='buttonHome' />";
+			print "<input type='radio' name='editStatus' value='o'> 待处理 （待处理的咨询案例）<br>";
+			print "<input type='radio' name='editStatus' value='t' checked> 处理完毕（已经处理完毕）<br>";
+			print "<input type='submit' value='保存评估和治疗建议' class='buttonHome' />";
 			print "</form>";
 			print "</fieldset>";
 		} else {
@@ -1652,7 +1652,7 @@ function savePatientRecord($pDataArray) {
 					$query_handle = mysql_query($db_request, $db_handle);
 					if ($query_handle != ""){
 					} else {
-						print "<p class='errorMessage'>Konnte CT, MRT, Video Angio - Optionen nicht &auml;ndern!</p>";
+						print "<p class='errorMessage'>Konnte CT, MRT, Video CTA - Optionen nicht &auml;ndern!</p>";
 					}
 					$db_request = "UPDATE patientRecords SET visualDataDescr = '$pDataArray[25]' WHERE patientRecordID = '$pDataArray[0]' LIMIT 1";
 					$query_handle = mysql_query($db_request, $db_handle);
@@ -1800,11 +1800,11 @@ function showPatientRecord($patientRecordID){
 			if ($editStatus == "o"){
 				print "<h3>";
 				print "  - 状况: ";
-				print "  <img src='imagesLayout/blinkenRot.gif'> 未处理 ";
+				print "  <img src='imagesLayout/blinkenRot.gif'> 待处理 ";
 			} else {
 				print "<h3 id='show'>";
 				print "  - 状况: ";
-				print " 已处理";
+				print " 处理完毕";
 			}
 			print "</h3>";
 			print "</div>";
@@ -1853,7 +1853,7 @@ function showPatientRecord($patientRecordID){
 					$videoOptionText	= "";
 				}
 				if ($visualData[3] == 'on'){
-					$angioOptionText	= "Angio: 是";
+					$angioOptionText	= "CTA: 是";
 				} else {
 					$angioOptionText	= "";
 				}
@@ -1887,7 +1887,7 @@ function showPatientRecord($patientRecordID){
 					print "</tr>";
 				}
 				print "<tr>";
-				print "<td valign='top' class='borderUnten'>卒中量表:";
+				print "<td valign='top' class='borderUnten'>卒中量表(NIHSS):";
 				print "</td>";
 				print "<td class='borderUnten'>";
 				getTotalNIHSSWerte($patientRecordID);
@@ -1896,7 +1896,7 @@ function showPatientRecord($patientRecordID){
 				print "</tr>";
 				if ($therapyDescr2 <> ''){
 					print "<tr>";
-					print "<td valign='top' class='borderUnten'>疑似诊断: </td>";
+					print "<td valign='top' class='borderUnten'>初步诊断: </td>";
 					print "<td valign='top' class='borderUnten'>$therapyDescr2</td>";
 					print "</tr>";
 				}
@@ -1984,7 +1984,7 @@ function showPatientRecordDiagnose($patientRecordID, $case){
 			print "<tr>";
 			print "<td valign='top'>时间:</td>";
 			print "<td>";
-			print "<b>症状的开始:</b> ";
+			print "<b>发病时间:</b> ";
 			print "$timeSymptoms ";
 			if ($symptomsText2 == 1){
 				print " (未知) ";
@@ -1999,15 +1999,15 @@ function showPatientRecordDiagnose($patientRecordID, $case){
 				print " $symptomsText";
 			}
 			print "<br />";
-			print "<b>最后一次看到患者没有症状:</b> $timeSymptomsGesund";
+			print "<b>最近一次无症状时间:</b> $timeSymptomsGesund";
 			print "<br />";
-			print "<b>入院 :</b> $timeHospital ";
+			print "<b>入院时间 :</b> $timeHospital ";
 			print "<br />";
 			print "</td>";
 			print "</tr>";
 			if ($symptomDescr <> ''){
 				print "<tr>";
-				print "<td valign='top'>当前病历: </td>";
+				print "<td valign='top'>现病史: </td>";
 				print "<td>$symptomDescr</td>";
 				print "</tr>";
 			}
@@ -2058,7 +2058,7 @@ function showPatientRecordDiagnose($patientRecordID, $case){
 					}
 				}
 				if (($pConditions <> '') OR ($conditionRows > 0)){
-					print "<b>已知疾病: </b> ";
+					print "<b>既往相关病史: </b> ";
 				}
 				if ($pConditions <> ''){
 					print " $pConditions, ";
@@ -2138,7 +2138,7 @@ function getNIHSSlist($patientRecordID) {
 			$rows1 = mysql_num_rows($query_handle1);
 			if ($rows1 == 0){
 			} else {
-				print "<span class='mini'>卒中量表档案:</span>";
+				print "<span class='mini'>既往评分:</span>";
 				for ($i1 = 0; $i1 < $rows1; $i1++){
 					$data1		  = mysql_fetch_row($query_handle1);
 					$pnID			= $data1[0];
@@ -2281,7 +2281,7 @@ function getTotalNIHSSWerte($patientRecordID) {
 					$nihssTotal	 	= $data2 -> nihssTotal;
 					if ($nihssTotal > 0) {
 						$counter++;
-						print "<li style='list-style-type:none;float: left;margin: 0 8px 0 0;' class='mini'>$counter. 卒中量表: <b>$nihssTotal</b></li>";
+						print "<li style='list-style-type:none;float: left;margin: 0 8px 0 0;' class='mini'>$counter. 卒中量表(NIHSS): <b>$nihssTotal</b></li>";
 					}
 				}
 				print "<div class='clear'></div>";

@@ -161,7 +161,7 @@ if (isset($_SESSION['userID']) == true) {
 								print "<fieldset>";
 								print "<input type='hidden' name='x' value='1030' />";
 								editPatientAndDiagnose($patientID);
-								print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
+								print "<input type='submit' value=' >>> 保存诊断文件 >>> ' class='buttonHome' />";
 								print "</fieldset>";
 								print "</form>";
 							} else {
@@ -180,7 +180,7 @@ if (isset($_SESSION['userID']) == true) {
 							print "<fieldset>";
 							print "<input type='hidden' name='x' value='1030' />";
 							editPatientAndDiagnose($patientID);
-							print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
+							print "<input type='submit' value=' >>> 保存诊断文件 >>> ' class='buttonHome' />";
 							print "</fieldset>";
 							print "</form>";
 						} else {
@@ -213,7 +213,7 @@ if (isset($_SESSION['userID']) == true) {
 						print "<input type='hidden' name='x' value='1035' />";
 						hiddenTherapyFields($patientRecordID);
 						editPatientRecordDiagnose($patientRecordID);
-						print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
+						print "<input type='submit' value=' >>> 保存诊断文件 >>> ' class='buttonHome' />";
 						print "</fieldset>";
 						print "</form>";
 						navPatient($patientID);
@@ -252,7 +252,7 @@ if (isset($_SESSION['userID']) == true) {
 						listAllPatientsRecords('o') ;
 					break;
 					case 2100:
-						print "<h1>已处理 - 诊断文件</h1>";
+						print "<h1>处理完毕 - 诊断文件</h1>";
 						listAllPatientsRecords('t') ;
 					break;
 					case 2200:
@@ -359,7 +359,7 @@ if (isset($_SESSION['userID']) == true) {
 							print "<input type='hidden' name='x' value='1035' />";
 							hiddenTherapyFields($patientRecordID);
 							editPatientRecordDiagnose($patientRecordID);
-							print "<input type='submit' value=' >>> 诊断文件 保存 >>> ' class='buttonHome' />";
+							print "<input type='submit' value=' >>> 保存诊断文件 >>> ' class='buttonHome' />";
 							print "</form>";
 							print "</fieldset>";
 						} else {

@@ -652,9 +652,9 @@ function getArztInfos($arztID) {
 	if (access()) {
 		$arztGender	 = getDBContent('aerzte','arztGender', 'arztID', $arztID);
 		if($arztGender == 'w'){
-			$arztGender = "女士";
+			$arztGender = "女";
 		} else {
-			$arztGender = "先生";
+			$arztGender = "男";
 		}
 		$titel = getDBContent('aerzte', 'acadTitle', 'arztID', $arztID);
 		$vorname = getDBContent('aerzte', 'arztFirstName', 'arztID', $arztID);
@@ -665,7 +665,7 @@ function getArztInfos($arztID) {
 		$tel = getDBContent('aerzte', 'arztPhone', 'arztID', $arztID);
 		$arztInfos = $clinicName . ' - ' . $titel . ' ' . $name . ' ' . $vorname ;
 		if ($tel <> ''){
-			$arztInfos = $clinicName . ' - ' . $titel . ' ' . $name . ' ' . $vorname . ' - Tel.:  ' . $tel;
+			$arztInfos = $clinicName . ' - ' . $titel . ' ' . $name . $vorname . ' - Tel.:  ' . $tel;
 		}
 		return $arztInfos;
 	}
@@ -676,9 +676,9 @@ function getArztInfosShort($arztID) {
 	if (access()) {
 		$arztGender	 = getDBContent('aerzte','arztGender', 'arztID', $arztID);
 		if($arztGender == 'w'){
-			$arztGender = "女士 ";
+			$arztGender = "女 ";
 		} else {
-			$arztGender = "先生  ";
+			$arztGender = "男  ";
 		}
 		$titel		  	= getDBContent('aerzte','acadTitle', 'arztID', $arztID);
 		$vorname		= getDBContent('aerzte','arztFirstName', 'arztID', $arztID);
@@ -687,7 +687,7 @@ function getArztInfosShort($arztID) {
 		$clinicName		= getDBContent('clinics','clinicName','clinicID',$clinicID);
 		$clinicInitial	= getDBContent('clinics','clinicInitial','clinicID',$clinicID);
 		$tel			= getDBContent('aerzte','arztPhone', 'arztID', $arztID);
-		$arztInfos	  	=  $titel . ' ' . $vorname . ' ' . $name ;
+		$arztInfos	  	=  $titel . ' ' . $vorname . $name ;
 		return $arztInfos;
 	}
 }

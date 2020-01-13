@@ -38,6 +38,6 @@ $datumFreigabeZEA		= '08.06.2010';
 $datumFreigabeGNV		= '01.07.2010';
 $datumFreigabePL		= '10.07.2010';
 $gueltigkeit			= '31.10.2011';
-$diagnoseButton			= '要求';
+$diagnoseButton			= '申请';
 $therapyButton			= '诊断建议';
 ?>

@@ -94,7 +94,7 @@ function searchPatientMenu(){
 	}
 	print "</select></td></tr>";
     print "<tr><td colspan='2'><hr></td></tr>";
-    print "<tr><td colspan='2'><b>入院</b><br /> ";
+    print "<tr><td colspan='2'><b>入院时间</b><br /> ";
 	print "从: <input name='from' 	onfocus='showCalendarControl(this);' type='text' size='12' /> ";
 	print "到: <input name='to' 	onfocus='showCalendarControl(this);' type='text' size='12' /></td></tr>";
     print "<tr><td colspan='2'><hr></td></tr>";
@@ -121,7 +121,7 @@ function searchPatientMenu(){
 	print "</form>";
 	print "</div>";
 	print "<div style='float:left;border: 1px dotted #999;margin: 3px;padding: 5px 3px;'>";
-	print "<b class='mini'>入院 </b><br /> ";
+	print "<b class='mini'>入院时间 </b><br /> ";
 	searchYesterdayButton();
 	searchTodayButton();
 	print "</div>";
@@ -332,9 +332,9 @@ function searchAll($search) {
 											$pPhone 		= $data3 -> pPhone;
 											$pGender	 	= $data3 -> pGender;
 											if($pGender == 'w'){
-												$pGender = "女士 ";
+												$pGender = "女 ";
 											} else {
-												$pGender = "先生  ";
+												$pGender = "男  ";
 											}
 											$pFirstName		= schreibweise($pFirstName);
 											$pLastName		= schreibweise($pLastName);
@@ -396,9 +396,9 @@ function searchAll($search) {
 														$timeHospital	= strtotime($timeHospital);
 														$timeHospital	= date("Y.m.d",$timeHospital) ;
 														if ($editStatus == 'o'){
-															$editStatus = "未处理";
+															$editStatus = "待处理";
 														} else {
-															$editStatus = "已处理";
+															$editStatus = "处理完毕";
 														}
 														print "<span class='mini'>";
 														if( ($i3 <> 0) AND ($i3 < $rows3)){
@@ -457,9 +457,9 @@ function searchPatientpBDayEmpty() {
 					$pPhone 		= $data1 -> pPhone;
 					$pGender	 	= $data1 -> pGender;
 					if($pGender == 'w'){
-						$pGender = "女士 ";
+						$pGender = "女 ";
 					} else {
-						$pGender = "先生  ";
+						$pGender = "男  ";
 					}
 					$pFirstName		= schreibweise($pFirstName);
 					$pLastName		= schreibweise($pLastName);
@@ -486,9 +486,9 @@ function searchPatientpBDayEmpty() {
 							$timeHospital	= strtotime($timeHospital);
 							$timeHospital	= date("Y.m.d",$timeHospital) ;
 							if ($editStatus == 'o'){
-								$editStatus = "未处理";
+								$editStatus = "待处理";
 							} else {
-								$editStatus = "已处理";
+								$editStatus = "处理完毕";
 							}
 							if( ($i3 <> 0) AND ($i3 < $rows3)){
 								print " || ";
